@@ -25,7 +25,7 @@ class CreaturesFactory {
         return null;
     }
 
-    int randomCreatureValue(int min, int max) {
+    static int randomCreatureValue(int min, int max) {
         Random randomGenerator = new Random();
 
         int i = 0;

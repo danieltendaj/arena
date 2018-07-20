@@ -1,6 +1,5 @@
 package com.stepstone.training.arena;
-
-public abstract class Creature {
+public abstract class Creature implements Fightable {
 
     private Integer strength;
     private Integer dexterity;
@@ -75,5 +74,14 @@ public abstract class Creature {
                 '}';
     }
 
+    public int attack(Creature creature){
+
+        boolean attackSuccess = false;
+        int potentialInjury = 0;
+        if (creature.getDexterity() > CreaturesFactory.randomCreatureValue(1, 10)){
+            attackSuccess = true;
+        }
+        return potentialInjury;
+    }
 
 }
