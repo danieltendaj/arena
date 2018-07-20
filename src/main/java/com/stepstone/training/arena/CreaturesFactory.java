@@ -30,7 +30,7 @@ class CreaturesFactory {
 
         int i = 0;
         while (i == 0) {
-            i = randomGenerator.nextInt(max);
+            i = randomGenerator.nextInt(max + 1);
             if (i < min) {
                 i = 0;
             }

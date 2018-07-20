@@ -1,18 +1,38 @@
 package com.stepstone.training.arena;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 class CreaturesFactoryTest {
 
-    @org.junit.jupiter.api.Test
-    void generate() {
+    static CreaturesFactory creaturesFactory;
+
+    @BeforeAll
+    static void setUp(){
+        creaturesFactory = new CreaturesFactory();
     }
 
-    @org.junit.jupiter.api.Test
-    void randomCreature() {
+    @Test
+    void isValueGreaterThanMin(){
+
+        int value = creaturesFactory.randomCreatureValue(10, 20);
+        assertTrue(value >= 10);
     }
 
-    @org.junit.jupiter.api.Test
-    void randomCreatureType() {
+    @Test
+    void isValueLessThanMax(){
+
+        int value = creaturesFactory.randomCreatureValue(10, 20);
+        assertTrue(value <= 20);
     }
+
+    @Test
+    void isValueTheSameMinMax(){
+
+        int value = creaturesFactory.randomCreatureValue(10, 10);
+        assertTrue(value == 10);
+    }
+
 }
