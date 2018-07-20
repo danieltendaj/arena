@@ -11,10 +11,10 @@ public class ArenaApplication {
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
-		List<Creature> list = creaturesFactory.randomCreatureList(10);
+		List<Creature> list = creaturesFactory.randomCreatureList(2);
 		for (Creature x:list) {
 			System.out.println(x.toString());
 		}
-
+		list.get(1).dodge(list.get(0).attack(list.get(1)), list.get(1));
 	}
 }

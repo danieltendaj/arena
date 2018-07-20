@@ -46,13 +46,13 @@ class CreaturesFactory {
 
     Creature randomCreature() {
         CreatureType randomType = randomCreatureType();
-        int randomValue = randomCreatureValue(10, 20);
+        int randomValue = randomCreatureValue(5, 15);
         return generate(randomType, randomValue);
     }
 
     List<Creature> randomCreatureList(int listSize) {
         List<Creature> list = new ArrayList<>();
-        for (int i = 0; i<10; i++) {
+        for (int i = 0; i < listSize; i++) {
             list.add(randomCreature());
         }
         return list;
