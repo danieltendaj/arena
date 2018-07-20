@@ -74,10 +74,13 @@ public abstract class Creature implements Fightable {
                 '}';
     }
 
-    public int attack(Creature creature){
+    public int attack(Creature assaulted){
 
         int potentialInjury = 0;
-        if (this.getDexterity() > CreaturesFactory.randomCreatureValue(1, 10)){
+        int shield = CreaturesFactory.randomCreatureValue(1, 10);
+        System.out.println("Shield: " + shield);
+
+        if (this.getDexterity() > shield){
             potentialInjury = this.getStrength() + CreaturesFactory.randomCreatureValue(1, 3);
         }
         if (potentialInjury > 0) {
@@ -91,19 +94,22 @@ public abstract class Creature implements Fightable {
         return potentialInjury;
     }
 
-    public void dodge(int injury, Creature creature) {
+    public void dodge(int potentialInjury, Creature aggressor) {
 
         boolean dodgeSuccess = false;
         int realInjury = 0;
-        //if (creature.getInitiative() > CreaturesFactory.randomCreatureValue(1, 10)){
-        if (false){
+        int threat = CreaturesFactory.randomCreatureValue(1, 10);
+        System.out.println("Threat: " + threat);
+        if (this.getInitiative() > threat){
             dodgeSuccess = true;
         }
         else {
-            realInjury = attack(creature) - this.getEndurance();
+            realInjury = potentialInjury - this.getEndurance();
         }
 
-        this.lifePoints = this.lifePoints - realInjury;
+        if (realInjury > 0) {
+            this.lifePoints = this.lifePoints - realInjury;
+        }
 
         if (dodgeSuccess) {
                 System.out.println("Dodge ended succesfully");
