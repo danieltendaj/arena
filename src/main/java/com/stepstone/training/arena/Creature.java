@@ -77,11 +77,11 @@ public abstract class Creature implements Fightable {
     public int attack(Creature assaulted){
 
         int potentialInjury = 0;
-        int shield = CreaturesFactory.randomCreatureValue(1, 10);
+        int shield = CreaturesRandomizer.randomCreatureValue(1, 10);
         System.out.println("Shield: " + shield);
 
         if (this.getDexterity() > shield){
-            potentialInjury = this.getStrength() + CreaturesFactory.randomCreatureValue(1, 3);
+            potentialInjury = this.getStrength() + CreaturesRandomizer.randomCreatureValue(1, 3);
         }
         if (potentialInjury > 0) {
             System.out.println("Attack ended succesfully");
@@ -98,7 +98,7 @@ public abstract class Creature implements Fightable {
 
         boolean dodgeSuccess = false;
         int realInjury = 0;
-        int threat = CreaturesFactory.randomCreatureValue(1, 10);
+        int threat = CreaturesRandomizer.randomCreatureValue(1, 10);
         System.out.println("Threat: " + threat);
         if (this.getInitiative() > threat){
             dodgeSuccess = true;

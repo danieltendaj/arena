@@ -25,19 +25,6 @@ class CreaturesFactory {
         return null;
     }
 
-    static int randomCreatureValue(int min, int max) {
-        Random randomGenerator = new Random();
-
-        int i = 0;
-        while (i == 0) {
-            i = randomGenerator.nextInt(max + 1);
-            if (i < min) {
-                i = 0;
-            }
-        }
-        return i;
-    }
-
     CreatureType randomCreatureType() {
         int creatureTypeNumber = CreatureType.values().length;
         Random randomGenerator = new Random();
@@ -46,7 +33,7 @@ class CreaturesFactory {
 
     Creature randomCreature() {
         CreatureType randomType = randomCreatureType();
-        int randomValue = randomCreatureValue(5, 15);
+        int randomValue = CreaturesRandomizer.randomCreatureValue(5, 15);
         return generate(randomType, randomValue);
     }
 
