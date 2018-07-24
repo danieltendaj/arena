@@ -1,14 +1,13 @@
 package com.stepstone.training.arena;
 
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.when;
-
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(CreaturesRandomizer.class)
@@ -46,8 +45,8 @@ public class ArenaApplicationTests {
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
-		Elf elf = (Elf) creaturesFactory.generate(CreatureType.ELF, 5);
-		Human human = (Human) creaturesFactory.generate(CreatureType.HUMAN, 5);
+		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5);
+		Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5);
 
 		//when
 		int realInjury = elf.attack(human);
@@ -68,8 +67,8 @@ public class ArenaApplicationTests {
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
-		Elf elf = (Elf) creaturesFactory.generate(CreatureType.ELF, 5);
-		Human human = (Human) creaturesFactory.generate(CreatureType.HUMAN, 5);
+		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5);
+		Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5);
 
 		//when
 		int realInjury = elf.attack(human);
@@ -90,8 +89,8 @@ public class ArenaApplicationTests {
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
-		Elf elf = (Elf) creaturesFactory.generate(CreatureType.ELF, 5);
-		Human human = (Human) creaturesFactory.generate(CreatureType.HUMAN, 5);
+		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5);
+		Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5);
 
 		//when
 		int realInjury = elf.attack(human);

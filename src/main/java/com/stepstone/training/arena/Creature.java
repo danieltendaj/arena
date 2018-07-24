@@ -1,5 +1,5 @@
 package com.stepstone.training.arena;
-public abstract class Creature implements Fightable {
+class Creature implements Fightable {
 
     private Integer strength;
     private Integer dexterity;

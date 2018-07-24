@@ -10,17 +10,23 @@ class CreaturesFactory {
 
         switch (type) {
             case ELF:
-                return new Elf(value,  value, value, value, value, value, value,value);
+                Elf elf = new Elf(value,  value, value, value, value, value, value,value);
+                return elf.createCreature();
             case ORC:
-                return new Orc(value,value,value,value,value,value,value,value);
+                Orc orc = new Orc(value,  value, value, value, value, value, value,value);
+                return orc.createCreature();
             case DWARF:
-                return new Dwarf(value,value,value,value,value,value,value,value);
+                Dwarf dwarf = new Dwarf(value,  value, value, value, value, value, value,value);
+                return dwarf.createCreature();
             case HUMAN:
-                return new Human(value,value,value,value,value,value,value,value);
+                Human human = new Human(value,  value, value, value, value, value, value,value);
+                return human.createCreature();
             case TROLL:
-                return new Troll(value,value,value,value,value,value,value,value);
+                Troll troll = new Troll(value,  value, value, value, value, value, value,value);
+                return troll.createCreature();
             case HALFING:
-                return new Halfing(value,value,value,value,value,value,value,value);
+                Halfing halfing = new Halfing(value,  value, value, value, value, value, value,value);
+                return halfing.createCreature();
         }
         return null;
     }
