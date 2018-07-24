@@ -12,12 +12,17 @@ public enum BodyPart {
     private final double probability;
     private final int bonus;
 
-    BodyPart(double probability, int bonus) {
+    private BodyPart(double probability, int bonus) {
         this.probability = probability;
         this.bonus = bonus;
     }
 
-    private double probability(){return probability;}
-    private int bonus(){return bonus;}
+    public double getProbability() {
+        return probability;
+    }
+
+    public int getBonus() {
+        return bonus;
+    }
 
 }
