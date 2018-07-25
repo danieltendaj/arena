@@ -112,7 +112,7 @@ class Creature implements Fightable {
         return potentialInjury;
     }
 
-    public void dodge(int potentialInjury, Creature aggressor) {
+    public boolean dodge(int potentialInjury, Creature aggressor) {
 
         boolean dodgeSuccess = false;
         int realInjury = 0;
@@ -139,6 +139,8 @@ class Creature implements Fightable {
         if (this.getLifePoints() <= 0) {
             System.out.println(this.getType() + " is dead");
         }
+
+        return (this.getLifePoints() > 0);
 
     }
 
