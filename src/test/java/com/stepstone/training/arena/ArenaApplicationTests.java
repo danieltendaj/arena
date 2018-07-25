@@ -42,6 +42,7 @@ public class ArenaApplicationTests {
 
 		PowerMockito.mockStatic(CreaturesRandomizer.class);
 		when(CreaturesRandomizer.randomCreatureValue(1, 10)).thenReturn(5);
+		when(CreaturesRandomizer.randomCreatureValue(1, 100)).thenReturn(31);
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
@@ -64,6 +65,7 @@ public class ArenaApplicationTests {
 
 		PowerMockito.mockStatic(CreaturesRandomizer.class);
 		when(CreaturesRandomizer.randomCreatureValue(1, 10)).thenReturn(6);
+		when(CreaturesRandomizer.randomCreatureValue(1, 100)).thenReturn(31);
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
@@ -86,6 +88,7 @@ public class ArenaApplicationTests {
 
 		PowerMockito.mockStatic(CreaturesRandomizer.class);
 		when(CreaturesRandomizer.randomCreatureValue(1, 10)).thenReturn(4);
+		when(CreaturesRandomizer.randomCreatureValue(1, 100)).thenReturn(31);
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
@@ -97,6 +100,56 @@ public class ArenaApplicationTests {
 
 		//then
 		assertTrue(realInjury == POTENTIAL_INJURY);
+
+	}
+
+	@Test(expected = Exception.class)
+	public void shouldHitReturnExceptionWhenMissed(){
+
+		//given
+		PowerMockito.mockStatic(CreaturesRandomizer.class);
+		when(CreaturesRandomizer.randomCreatureValue(1, 100)).thenReturn(31);
+
+		CreaturesFactory creaturesFactory = new CreaturesFactory();
+
+		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5);
+
+		BodyPart hitPart = null;
+		//when
+		try {
+			hitPart = elf.hit();
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+
+		System.out.println(hitPart.getBonus());
+
+	}
+
+	@Test
+	public void shouldHitReturnThreeWhenHead(){
+
+		//given
+		PowerMockito.mockStatic(CreaturesRandomizer.class);
+		when(CreaturesRandomizer.randomCreatureValue(1, 100)).thenReturn(5);
+
+		CreaturesFactory creaturesFactory = new CreaturesFactory();
+
+		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5);
+
+		BodyPart hitPart = null;
+		//when
+		try {
+			hitPart = elf.hit();
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+
+		//then
+		assertTrue(hitPart.getBonus() == 3);
+
 
 	}
 

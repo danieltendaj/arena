@@ -146,12 +146,24 @@ class Creature implements Fightable {
 
     public BodyPart hit() throws Exception {
 
-        int result = CreaturesRandomizer.randomCreatureValue(0, 6);
-        if (result == 6){
+        boolean doHit = false;
+        int result = 0;
+        BodyPart bodyPartHit = null;
+
+        for (BodyPart bodyPart : BodyPart.values()){
+            result = CreaturesRandomizer.randomCreatureValue(1, 100);
+            doHit = result <= bodyPart.getProbability() * 100;
+            if (doHit) {
+                bodyPartHit = bodyPart;
+                break;
+            }
+        }
+
+        if (!doHit){
             throw new Exception("Missed");
         }
         else {
-            return BodyPart.values()[result];
+            return bodyPartHit;
         }
     }
 
