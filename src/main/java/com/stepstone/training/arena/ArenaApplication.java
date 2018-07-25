@@ -15,6 +15,9 @@ public class ArenaApplication {
 		for (Creature x:list) {
 			System.out.println(x.toString());
 		}
-		list.get(1).dodge(list.get(0).attack(list.get(1)), list.get(1));
+
+		FightService fightService = new FightService();
+		fightService.fight(list.get(0), list.get(1));
+
 	}
 }

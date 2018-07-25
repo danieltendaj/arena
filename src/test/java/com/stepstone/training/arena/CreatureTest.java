@@ -13,7 +13,23 @@ import static org.junit.Assert.assertTrue;
 
 class CreatureTest {
 
-    static CreaturesFactory creaturesFactory;
+    @Test
+    public void getPart(){
 
+        CreaturesFactory creaturesFactory = new CreaturesFactory();
+
+        Creature elf = creaturesFactory.generate(CreatureType.ELF, 5);
+
+        BodyPart hitPart = null;
+        try {
+            hitPart = elf.hit();
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+
+        System.out.println(hitPart.getBonus());
+
+    }
 
 }

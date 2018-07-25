@@ -76,14 +76,32 @@ class Creature implements Fightable {
 
     public int attack(Creature assaulted){
 
+        boolean attackSuccess = false;
         int potentialInjury = 0;
-        int shield = CreaturesRandomizer.randomCreatureValue(1, 10);
-        System.out.println("Shield: " + shield);
-
-        if (this.getDexterity() > shield){
-            potentialInjury = this.getStrength() + CreaturesRandomizer.randomCreatureValue(1, 3);
+        BodyPart hitPart = null;
+        try {
+            hitPart = hit();
+            attackSuccess = true;
         }
-        if (potentialInjury > 0) {
+        catch (Exception e) {
+            System.out.println(e);
+        }
+
+        if (!attackSuccess){
+
+            int shield = CreaturesRandomizer.randomCreatureValue(1, 10);
+            System.out.println("Shield: " + shield);
+
+            if (this.getDexterity() > shield){
+                attackSuccess = true;
+                potentialInjury = this.getStrength() + CreaturesRandomizer.randomCreatureValue(1, 3);
+            }
+        }
+        else {
+            potentialInjury = this.getStrength() + CreaturesRandomizer.randomCreatureValue(1, 3) + hitPart.getBonus();
+        }
+
+        if (attackSuccess) {
             System.out.println("Attack ended succesfully");
             System.out.println("Potential Injury: " + potentialInjury);
         }
