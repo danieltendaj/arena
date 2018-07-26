@@ -6,6 +6,9 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
@@ -150,6 +153,34 @@ public class ArenaApplicationTests {
 		//then
 		assertTrue(hitPart.getBonus() == 3);
 
+	}
+
+	@Test
+	public void shouldHitRandomCorrectly(){
+
+		CreaturesFactory creaturesFactory = new CreaturesFactory();
+
+		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5);
+
+		BodyPart hitPart = null;
+
+		Map<BodyPart, Integer> drawResults = new HashMap<BodyPart, Integer>();
+
+		for (BodyPart bodyPart:BodyPart.values()){
+			drawResults.put(bodyPart, 0);
+		}
+
+		for (int i = 1; i < 10000000; i++){
+			try {
+				hitPart = elf.hit();
+				drawResults[1] = hitPart.;
+			}
+			catch (Exception e) {
+				System.out.println(e);
+			}
+
+
+		}
 
 	}
 

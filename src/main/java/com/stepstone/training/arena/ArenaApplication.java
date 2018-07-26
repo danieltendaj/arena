@@ -11,6 +11,8 @@ public class ArenaApplication {
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
+		Creature c = Creature.CreatureBuilder.newInstance().
+
 		List<Creature> list = creaturesFactory.randomCreatureList(2);
 		for (Creature x:list) {
 			System.out.println(x.toString());
