@@ -1,8 +1,5 @@
 package com.stepstone.training.arena;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import java.util.List;
 
 public class ArenaApplication {
@@ -10,8 +7,6 @@ public class ArenaApplication {
 	public static void main(String[] args) {
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
-
-		Creature c = Creature.CreatureBuilder.newInstance().
 
 		List<Creature> list = creaturesFactory.randomCreatureList(2);
 		for (Creature x:list) {

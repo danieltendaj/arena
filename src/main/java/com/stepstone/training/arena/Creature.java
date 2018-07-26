@@ -23,6 +23,9 @@ class Creature implements Fightable {
         this.type = type;
     }
 
+    protected Creature(){
+    }
+
     public Integer getStrength() {
         return strength;
     }
@@ -167,7 +170,7 @@ class Creature implements Fightable {
         }
     }
 
-    static class CreatureBuilder {
+    public static class CreatureBuilder {
         private Integer strength;
         private Integer dexterity;
         private Integer initiative;

@@ -10,23 +10,71 @@ class CreaturesFactory {
 
         switch (type) {
             case ELF:
-                Elf elf = new Elf(value,  value, value, value, value, value, value,value);
-                return elf.createCreature();
+                Creature.CreatureBuilder elfBuilder = Elf.CreatureBuilder.newInstance();
+                elfBuilder.setStrength(value);
+                elfBuilder.setDexterity(value);
+                elfBuilder.setInitiative(value);
+                elfBuilder.setVelocity(value);
+                elfBuilder.setEndurance(value);
+                elfBuilder.setNumberOfAttacks(value);
+                elfBuilder.setNumberOfDodges(value);
+                elfBuilder.setLifePoints(value);
+                return elfBuilder.createCreature();
             case ORC:
-                Orc orc = new Orc(value,  value, value, value, value, value, value,value);
-                return orc.createCreature();
+                Creature.CreatureBuilder orcBuilder = Orc.CreatureBuilder.newInstance();
+                orcBuilder.setStrength(value);
+                orcBuilder.setDexterity(value);
+                orcBuilder.setInitiative(value);
+                orcBuilder.setVelocity(value);
+                orcBuilder.setEndurance(value);
+                orcBuilder.setNumberOfAttacks(value);
+                orcBuilder.setNumberOfDodges(value);
+                orcBuilder.setLifePoints(value);
+                return orcBuilder.createCreature();
             case DWARF:
-                Dwarf dwarf = new Dwarf(value,  value, value, value, value, value, value,value);
-                return dwarf.createCreature();
+                Creature.CreatureBuilder dwarfBuilder = Dwarf.CreatureBuilder.newInstance();
+                dwarfBuilder.setStrength(value);
+                dwarfBuilder.setDexterity(value);
+                dwarfBuilder.setInitiative(value);
+                dwarfBuilder.setVelocity(value);
+                dwarfBuilder.setEndurance(value);
+                dwarfBuilder.setNumberOfAttacks(value);
+                dwarfBuilder.setNumberOfDodges(value);
+                dwarfBuilder.setLifePoints(value);
+                return dwarfBuilder.createCreature();
             case HUMAN:
-                Human human = new Human(value,  value, value, value, value, value, value,value);
-                return human.createCreature();
+                Creature.CreatureBuilder humanBuilder = Human.CreatureBuilder.newInstance();
+                humanBuilder.setStrength(value);
+                humanBuilder.setDexterity(value);
+                humanBuilder.setInitiative(value);
+                humanBuilder.setVelocity(value);
+                humanBuilder.setEndurance(value);
+                humanBuilder.setNumberOfAttacks(value);
+                humanBuilder.setNumberOfDodges(value);
+                humanBuilder.setLifePoints(value);
+                return humanBuilder.createCreature();
             case TROLL:
-                Troll troll = new Troll(value,  value, value, value, value, value, value,value);
-                return troll.createCreature();
+                Creature.CreatureBuilder trollBuilder = Troll.CreatureBuilder.newInstance();
+                trollBuilder.setStrength(value);
+                trollBuilder.setDexterity(value);
+                trollBuilder.setInitiative(value);
+                trollBuilder.setVelocity(value);
+                trollBuilder.setEndurance(value);
+                trollBuilder.setNumberOfAttacks(value);
+                trollBuilder.setNumberOfDodges(value);
+                trollBuilder.setLifePoints(value);
+                return trollBuilder.createCreature();
             case HALFING:
-                Halfing halfing = new Halfing(value,  value, value, value, value, value, value,value);
-                return halfing.createCreature();
+                Creature.CreatureBuilder halfingBuilder = Halfing.CreatureBuilder.newInstance();
+                halfingBuilder.setStrength(value);
+                halfingBuilder.setDexterity(value);
+                halfingBuilder.setInitiative(value);
+                halfingBuilder.setVelocity(value);
+                halfingBuilder.setEndurance(value);
+                halfingBuilder.setNumberOfAttacks(value);
+                halfingBuilder.setNumberOfDodges(value);
+                halfingBuilder.setLifePoints(value);
+                return halfingBuilder.createCreature();
         }
         return null;
     }

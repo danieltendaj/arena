@@ -155,6 +155,7 @@ public class ArenaApplicationTests {
 
 	}
 
+
 	@Test
 	public void shouldHitRandomCorrectly(){
 
@@ -170,16 +171,18 @@ public class ArenaApplicationTests {
 			drawResults.put(bodyPart, 0);
 		}
 
-		for (int i = 1; i < 10000000; i++){
+		for (int i = 1; i < 1000000; i++){
 			try {
 				hitPart = elf.hit();
-				drawResults[1] = hitPart.;
+				drawResults.put(hitPart, drawResults.get(hitPart) + 1);
 			}
 			catch (Exception e) {
-				System.out.println(e);
+				//System.out.println(e);
 			}
+		}
 
-
+		for (Map.Entry<BodyPart, Integer> entry : drawResults.entrySet()){
+			System.out.println("BodyPart: " + entry.getKey() + ", Occurences: " + entry.getValue() / 10000);
 		}
 
 	}
