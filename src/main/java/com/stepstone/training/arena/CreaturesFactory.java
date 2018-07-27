@@ -1,12 +1,10 @@
 package com.stepstone.training.arena;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 class CreaturesFactory {
 
-    Creature generate(CreatureType type, int value) {
+    Creature generate(CreatureType type, int value, Map<Armour, Integer> armour) {
 
         switch (type) {
             case ELF:
@@ -19,6 +17,7 @@ class CreaturesFactory {
                 elfBuilder.setNumberOfAttacks(value);
                 elfBuilder.setNumberOfDodges(value);
                 elfBuilder.setLifePoints(value);
+                elfBuilder.setMapArmour(armour);
                 return elfBuilder.createCreature();
             case ORC:
                 Creature.CreatureBuilder orcBuilder = Orc.CreatureBuilder.newInstance();
@@ -30,6 +29,7 @@ class CreaturesFactory {
                 orcBuilder.setNumberOfAttacks(value);
                 orcBuilder.setNumberOfDodges(value);
                 orcBuilder.setLifePoints(value);
+                orcBuilder.setMapArmour(armour);
                 return orcBuilder.createCreature();
             case DWARF:
                 Creature.CreatureBuilder dwarfBuilder = Dwarf.CreatureBuilder.newInstance();
@@ -41,6 +41,7 @@ class CreaturesFactory {
                 dwarfBuilder.setNumberOfAttacks(value);
                 dwarfBuilder.setNumberOfDodges(value);
                 dwarfBuilder.setLifePoints(value);
+                dwarfBuilder.setMapArmour(armour);
                 return dwarfBuilder.createCreature();
             case HUMAN:
                 Creature.CreatureBuilder humanBuilder = Human.CreatureBuilder.newInstance();
@@ -52,6 +53,7 @@ class CreaturesFactory {
                 humanBuilder.setNumberOfAttacks(value);
                 humanBuilder.setNumberOfDodges(value);
                 humanBuilder.setLifePoints(value);
+                humanBuilder.setMapArmour(armour);
                 return humanBuilder.createCreature();
             case TROLL:
                 Creature.CreatureBuilder trollBuilder = Troll.CreatureBuilder.newInstance();
@@ -63,6 +65,7 @@ class CreaturesFactory {
                 trollBuilder.setNumberOfAttacks(value);
                 trollBuilder.setNumberOfDodges(value);
                 trollBuilder.setLifePoints(value);
+                trollBuilder.setMapArmour(armour);
                 return trollBuilder.createCreature();
             case HALFING:
                 Creature.CreatureBuilder halfingBuilder = Halfing.CreatureBuilder.newInstance();
@@ -74,6 +77,7 @@ class CreaturesFactory {
                 halfingBuilder.setNumberOfAttacks(value);
                 halfingBuilder.setNumberOfDodges(value);
                 halfingBuilder.setLifePoints(value);
+                halfingBuilder.setMapArmour(armour);
                 return halfingBuilder.createCreature();
         }
         return null;
@@ -85,10 +89,21 @@ class CreaturesFactory {
         return CreatureType.values()[randomGenerator.nextInt(creatureTypeNumber)];
     }
 
+    Map<Armour, Integer> randomArmour(){
+        Map<Armour, Integer> map = new HashMap<>();
+        int numberArmours;
+        for (Armour armour:Armour.values()) {
+            numberArmours = CreaturesRandomizer.randomCreatureValue(0, 2);
+            map.put(armour, numberArmours);
+        }
+        return map;
+    }
+
     Creature randomCreature() {
         CreatureType randomType = randomCreatureType();
         int randomValue = CreaturesRandomizer.randomCreatureValue(5, 15);
-        return generate(randomType, randomValue);
+        Map<Armour, Integer> randomArmour = randomArmour();
+        return generate(randomType, randomValue, randomArmour);
     }
 
     List<Creature> randomCreatureList(int listSize) {

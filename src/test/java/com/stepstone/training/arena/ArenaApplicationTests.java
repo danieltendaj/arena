@@ -49,8 +49,10 @@ public class ArenaApplicationTests {
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
-		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5);
-		Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5);
+		Map<Armour, Integer> map = new HashMap<>();
+		map.put(Armour.HELMET, 1);
+		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
+		Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5, map);
 
 		//when
 		int realInjury = elf.attack(human);
@@ -72,8 +74,10 @@ public class ArenaApplicationTests {
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
-		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5);
-		Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5);
+		Map<Armour, Integer> map = new HashMap<>();
+		map.put(Armour.HELMET, 1);
+		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
+		Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5, map);
 
 		//when
 		int realInjury = elf.attack(human);
@@ -95,8 +99,10 @@ public class ArenaApplicationTests {
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
-		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5);
-		Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5);
+		Map<Armour, Integer> map = new HashMap<>();
+		map.put(Armour.HELMET, 1);
+		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
+		Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5, map);
 
 		//when
 		int realInjury = elf.attack(human);
@@ -115,7 +121,9 @@ public class ArenaApplicationTests {
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
-		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5);
+		Map<Armour, Integer> map = new HashMap<>();
+		map.put(Armour.HELMET, 1);
+		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
 
 		BodyPart hitPart = null;
 		//when
@@ -139,7 +147,9 @@ public class ArenaApplicationTests {
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
-		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5);
+		Map<Armour, Integer> map = new HashMap<>();
+		map.put(Armour.HELMET, 1);
+		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
 
 		BodyPart hitPart = null;
 		//when
@@ -161,7 +171,9 @@ public class ArenaApplicationTests {
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
-		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5);
+		Map<Armour, Integer> map = new HashMap<>();
+		map.put(Armour.HELMET, 1);
+		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
 
 		BodyPart hitPart = null;
 

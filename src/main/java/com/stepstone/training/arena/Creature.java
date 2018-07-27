@@ -1,8 +1,6 @@
 package com.stepstone.training.arena;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 class Creature implements Fightable {
@@ -16,9 +14,9 @@ class Creature implements Fightable {
     private Integer numberOfDodges;
     private Integer lifePoints;
     private CreatureType type;
-    private List<Armour> listArmour;
+    private Map<Armour, Integer> mapArmour;
 
-    private Creature(Integer strength, Integer dexterity, Integer initiative, Integer velocity, Integer endurance, Integer numberOfAttacks, Integer numberOfDodges, Integer lifePoints, CreatureType type) {
+    private Creature(Integer strength, Integer dexterity, Integer initiative, Integer velocity, Integer endurance, Integer numberOfAttacks, Integer numberOfDodges, Integer lifePoints, CreatureType type, Map<Armour, Integer> mapArmour) {
         this.strength = strength;
         this.dexterity = dexterity;
         this.initiative = initiative;
@@ -28,6 +26,7 @@ class Creature implements Fightable {
         this.numberOfDodges = numberOfDodges;
         this.lifePoints = lifePoints;
         this.type = type;
+        this.mapArmour = mapArmour;
     }
 
     protected Creature(){
@@ -67,6 +66,10 @@ class Creature implements Fightable {
 
     public CreatureType getType() {
         return type;
+    }
+
+    public Map<Armour, Integer> getMapArmour() {
+        return mapArmour;
     }
 
     @Override
@@ -196,6 +199,7 @@ class Creature implements Fightable {
         private Integer numberOfDodges;
         private Integer lifePoints;
         private CreatureType type;
+        private Map<Armour, Integer> mapArmour;
 
         public CreatureBuilder setStrength(Integer strength) {
             this.strength = strength;
@@ -242,13 +246,13 @@ class Creature implements Fightable {
             return this;
         }
 
-        public CreatureBuilder setArmour(List<Armour> listArmour) {
-            this.listArmour = listArmour;
+        public CreatureBuilder setMapArmour(Map<Armour, Integer> mapArmour) {
+            this.mapArmour = mapArmour;
             return this;
         }
 
         public Creature createCreature() {
-            return new Creature(strength, dexterity, initiative, velocity, endurance, numberOfAttacks, numberOfDodges, lifePoints, type);
+            return new Creature(strength, dexterity, initiative, velocity, endurance, numberOfAttacks, numberOfDodges, lifePoints, type, mapArmour);
         }
 
         public static CreatureBuilder newInstance() {
