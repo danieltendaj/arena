@@ -1,4 +1,8 @@
 package com.stepstone.training.arena;
+
+import java.util.HashMap;
+import java.util.Map;
+
 class Creature implements Fightable {
 
     private Integer strength;
@@ -153,16 +157,25 @@ class Creature implements Fightable {
         int result = 0;
         BodyPart bodyPartHit = null;
 
-        for (BodyPart bodyPart : BodyPart.values()){
-            result = CreaturesRandomizer.randomCreatureValue(1, 100);
-            doHit = result <= bodyPart.getProbability() * 100;
-            if (doHit) {
-                bodyPartHit = bodyPart;
-                break;
+        Map<Integer, BodyPart> tableBodyParts = new HashMap<Integer, BodyPart>();
+
+        for (int i = 1; i <= 100; i++){
+            tableBodyParts.put(i, null);
+        }
+
+        int j = 1;
+        for (BodyPart bodyPart:BodyPart.values()){
+            for (int k = 1; k <= bodyPart.getProbability(); k++) {
+                tableBodyParts.put(j, bodyPart);
+                j++;
             }
         }
 
-        if (!doHit){
+        result = CreaturesRandomizer.randomCreatureValue(1, 100);
+
+        bodyPartHit = tableBodyParts.get(result);
+
+        if (bodyPartHit == null){
             throw new Exception("Missed");
         }
         else {

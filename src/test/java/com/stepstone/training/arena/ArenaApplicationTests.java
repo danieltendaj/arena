@@ -171,7 +171,7 @@ public class ArenaApplicationTests {
 			drawResults.put(bodyPart, 0);
 		}
 
-		for (int i = 1; i < 1000000; i++){
+		for (int i = 1; i < 10000; i++){
 			try {
 				hitPart = elf.hit();
 				drawResults.put(hitPart, drawResults.get(hitPart) + 1);
@@ -182,7 +182,7 @@ public class ArenaApplicationTests {
 		}
 
 		for (Map.Entry<BodyPart, Integer> entry : drawResults.entrySet()){
-			System.out.println("BodyPart: " + entry.getKey() + ", Occurences: " + entry.getValue() / 10000);
+			System.out.println("BodyPart: " + entry.getKey() + ", Occurences: " + entry.getValue() / 100);
 		}
 
 	}
