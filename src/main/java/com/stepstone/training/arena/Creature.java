@@ -16,7 +16,7 @@ class Creature implements Fightable {
     private Integer numberOfDodges;
     private Integer lifePoints;
     private CreatureType type;
-    private List<Armour> listArmour = new ArrayList<>();
+    private List<Armour> listArmour;
 
     private Creature(Integer strength, Integer dexterity, Integer initiative, Integer velocity, Integer endurance, Integer numberOfAttacks, Integer numberOfDodges, Integer lifePoints, CreatureType type) {
         this.strength = strength;
@@ -239,6 +239,11 @@ class Creature implements Fightable {
 
         public CreatureBuilder setType(CreatureType type) {
             this.type = type;
+            return this;
+        }
+
+        public CreatureBuilder setArmour(List<Armour> listArmour) {
+            this.listArmour = listArmour;
             return this;
         }
 
