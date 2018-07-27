@@ -1,6 +1,8 @@
 package com.stepstone.training.arena;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 class Creature implements Fightable {
@@ -14,6 +16,7 @@ class Creature implements Fightable {
     private Integer numberOfDodges;
     private Integer lifePoints;
     private CreatureType type;
+    private List<Armour> listArmour = new ArrayList<>();
 
     private Creature(Integer strength, Integer dexterity, Integer initiative, Integer velocity, Integer endurance, Integer numberOfAttacks, Integer numberOfDodges, Integer lifePoints, CreatureType type) {
         this.strength = strength;
