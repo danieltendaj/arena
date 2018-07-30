@@ -3,7 +3,7 @@ package com.stepstone.training.arena;
 import java.util.HashMap;
 import java.util.Map;
 
-class Creature implements Fightable {
+public class Creature implements Fightable {
 
     private Integer strength;
     private Integer dexterity;
@@ -16,20 +16,7 @@ class Creature implements Fightable {
     private CreatureType type;
     private Map<Armour, Integer> mapArmour;
 
-    private Creature(Integer strength, Integer dexterity, Integer initiative, Integer velocity, Integer endurance, Integer numberOfAttacks, Integer numberOfDodges, Integer lifePoints, CreatureType type, Map<Armour, Integer> mapArmour) {
-        this.strength = strength;
-        this.dexterity = dexterity;
-        this.initiative = initiative;
-        this.velocity = velocity;
-        this.endurance = endurance;
-        this.numberOfAttacks = numberOfAttacks;
-        this.numberOfDodges = numberOfDodges;
-        this.lifePoints = lifePoints;
-        this.type = type;
-        this.mapArmour = mapArmour;
-    }
-
-    protected Creature(){
+    Creature() {
     }
 
     public Integer getStrength() {
@@ -189,74 +176,65 @@ class Creature implements Fightable {
         }
     }
 
+    public static CreatureBuilder builder(){
+        return new CreatureBuilder();
+    }
+
     public static class CreatureBuilder {
-        private Integer strength;
-        private Integer dexterity;
-        private Integer initiative;
-        private Integer velocity;
-        private Integer endurance;
-        private Integer numberOfAttacks;
-        private Integer numberOfDodges;
-        private Integer lifePoints;
-        private CreatureType type;
-        private Map<Armour, Integer> mapArmour;
+        private Creature creature = new Creature();
 
         public CreatureBuilder setStrength(Integer strength) {
-            this.strength = strength;
+            creature.strength = strength;
             return this;
         }
 
         public CreatureBuilder setDexterity(Integer dexterity) {
-            this.dexterity = dexterity;
+            creature.dexterity = dexterity;
             return this;
         }
 
         public CreatureBuilder setInitiative(Integer initiative) {
-            this.initiative = initiative;
+            creature.initiative = initiative;
             return this;
         }
 
         public CreatureBuilder setVelocity(Integer velocity) {
-            this.velocity = velocity;
+            creature.velocity = velocity;
             return this;
         }
 
         public CreatureBuilder setEndurance(Integer endurance) {
-            this.endurance = endurance;
+            creature.endurance = endurance;
             return this;
         }
 
         public CreatureBuilder setNumberOfAttacks(Integer numberOfAttacks) {
-            this.numberOfAttacks = numberOfAttacks;
+            creature.numberOfAttacks = numberOfAttacks;
             return this;
         }
 
         public CreatureBuilder setNumberOfDodges(Integer numberOfDodges) {
-            this.numberOfDodges = numberOfDodges;
+            creature.numberOfDodges = numberOfDodges;
             return this;
         }
 
         public CreatureBuilder setLifePoints(Integer lifePoints) {
-            this.lifePoints = lifePoints;
+            creature.lifePoints = lifePoints;
             return this;
         }
 
         public CreatureBuilder setType(CreatureType type) {
-            this.type = type;
+            creature.type = type;
             return this;
         }
 
         public CreatureBuilder setMapArmour(Map<Armour, Integer> mapArmour) {
-            this.mapArmour = mapArmour;
+            creature.mapArmour = mapArmour;
             return this;
         }
 
-        public Creature createCreature() {
-            return new Creature(strength, dexterity, initiative, velocity, endurance, numberOfAttacks, numberOfDodges, lifePoints, type, mapArmour);
-        }
-
-        public static CreatureBuilder newInstance() {
-            return new CreatureBuilder();
+        public Creature build() {
+            return creature;
         }
 
     }

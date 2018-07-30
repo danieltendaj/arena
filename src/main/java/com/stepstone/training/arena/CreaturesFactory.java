@@ -8,7 +8,7 @@ class CreaturesFactory {
 
         switch (type) {
             case ELF:
-                Creature.CreatureBuilder elfBuilder = Elf.CreatureBuilder.newInstance();
+                Creature.CreatureBuilder elfBuilder = Elf.builder();
                 elfBuilder.setStrength(value);
                 elfBuilder.setDexterity(value);
                 elfBuilder.setInitiative(value);
@@ -18,9 +18,9 @@ class CreaturesFactory {
                 elfBuilder.setNumberOfDodges(value);
                 elfBuilder.setLifePoints(value);
                 elfBuilder.setMapArmour(armour);
-                return elfBuilder.createCreature();
+                return elfBuilder.build();
             case ORC:
-                Creature.CreatureBuilder orcBuilder = Orc.CreatureBuilder.newInstance();
+                Creature.CreatureBuilder orcBuilder = Orc.builder();
                 orcBuilder.setStrength(value);
                 orcBuilder.setDexterity(value);
                 orcBuilder.setInitiative(value);
@@ -30,9 +30,9 @@ class CreaturesFactory {
                 orcBuilder.setNumberOfDodges(value);
                 orcBuilder.setLifePoints(value);
                 orcBuilder.setMapArmour(armour);
-                return orcBuilder.createCreature();
+                return orcBuilder.build();
             case DWARF:
-                Creature.CreatureBuilder dwarfBuilder = Dwarf.CreatureBuilder.newInstance();
+                Creature.CreatureBuilder dwarfBuilder = Dwarf.builder();
                 dwarfBuilder.setStrength(value);
                 dwarfBuilder.setDexterity(value);
                 dwarfBuilder.setInitiative(value);
@@ -42,9 +42,9 @@ class CreaturesFactory {
                 dwarfBuilder.setNumberOfDodges(value);
                 dwarfBuilder.setLifePoints(value);
                 dwarfBuilder.setMapArmour(armour);
-                return dwarfBuilder.createCreature();
+                return dwarfBuilder.build();
             case HUMAN:
-                Creature.CreatureBuilder humanBuilder = Human.CreatureBuilder.newInstance();
+                Creature.CreatureBuilder humanBuilder = Human.builder();
                 humanBuilder.setStrength(value);
                 humanBuilder.setDexterity(value);
                 humanBuilder.setInitiative(value);
@@ -54,9 +54,9 @@ class CreaturesFactory {
                 humanBuilder.setNumberOfDodges(value);
                 humanBuilder.setLifePoints(value);
                 humanBuilder.setMapArmour(armour);
-                return humanBuilder.createCreature();
+                return humanBuilder.build();
             case TROLL:
-                Creature.CreatureBuilder trollBuilder = Troll.CreatureBuilder.newInstance();
+                Creature.CreatureBuilder trollBuilder = Troll.builder();
                 trollBuilder.setStrength(value);
                 trollBuilder.setDexterity(value);
                 trollBuilder.setInitiative(value);
@@ -66,9 +66,9 @@ class CreaturesFactory {
                 trollBuilder.setNumberOfDodges(value);
                 trollBuilder.setLifePoints(value);
                 trollBuilder.setMapArmour(armour);
-                return trollBuilder.createCreature();
+                return trollBuilder.build();
             case HALFING:
-                Creature.CreatureBuilder halfingBuilder = Halfing.CreatureBuilder.newInstance();
+                Creature.CreatureBuilder halfingBuilder = Halfing.builder();
                 halfingBuilder.setStrength(value);
                 halfingBuilder.setDexterity(value);
                 halfingBuilder.setInitiative(value);
@@ -78,7 +78,7 @@ class CreaturesFactory {
                 halfingBuilder.setNumberOfDodges(value);
                 halfingBuilder.setLifePoints(value);
                 halfingBuilder.setMapArmour(armour);
-                return halfingBuilder.createCreature();
+                return halfingBuilder.build();
         }
         return null;
     }
