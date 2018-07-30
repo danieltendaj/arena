@@ -45,7 +45,7 @@ public class ArenaApplicationTests {
 
 		PowerMockito.mockStatic(CreaturesRandomizer.class);
 		when(CreaturesRandomizer.randomCreatureValue(1, 10)).thenReturn(5);
-		when(CreaturesRandomizer.randomCreatureValue(1, 100)).thenReturn(31);
+		when(CreaturesRandomizer.randomCreatureValue(1, 100)).thenReturn(66);
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
@@ -70,7 +70,7 @@ public class ArenaApplicationTests {
 
 		PowerMockito.mockStatic(CreaturesRandomizer.class);
 		when(CreaturesRandomizer.randomCreatureValue(1, 10)).thenReturn(6);
-		when(CreaturesRandomizer.randomCreatureValue(1, 100)).thenReturn(31);
+		when(CreaturesRandomizer.randomCreatureValue(1, 100)).thenReturn(66);
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
@@ -95,7 +95,7 @@ public class ArenaApplicationTests {
 
 		PowerMockito.mockStatic(CreaturesRandomizer.class);
 		when(CreaturesRandomizer.randomCreatureValue(1, 10)).thenReturn(4);
-		when(CreaturesRandomizer.randomCreatureValue(1, 100)).thenReturn(31);
+		when(CreaturesRandomizer.randomCreatureValue(1, 100)).thenReturn(66);
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
@@ -117,7 +117,7 @@ public class ArenaApplicationTests {
 
 		//given
 		PowerMockito.mockStatic(CreaturesRandomizer.class);
-		when(CreaturesRandomizer.randomCreatureValue(1, 100)).thenReturn(31);
+		when(CreaturesRandomizer.randomCreatureValue(1, 100)).thenReturn(66);
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
