@@ -74,10 +74,11 @@ public class Creature implements Fightable {
                 '}';
     }
 
-    public int attack(Creature assaulted){
+    @Override
+    public AttackResult attack() {
 
         boolean attackSuccess = false;
-        int potentialInjury = 0;
+        int potentialDamage = 0;
         BodyPart hitPart = null;
         try {
             hitPart = hit();
@@ -94,39 +95,40 @@ public class Creature implements Fightable {
 
             if (this.getDexterity() > shield){
                 attackSuccess = true;
-                potentialInjury = this.getStrength() + CreaturesRandomizer.randomCreatureValue(1, 3);
+                potentialDamage = this.getStrength() + CreaturesRandomizer.randomCreatureValue(1, 3);
             }
         }
         else {
-            potentialInjury = this.getStrength() + CreaturesRandomizer.randomCreatureValue(1, 3) + hitPart.getBonus();
+            potentialDamage = this.getStrength() + CreaturesRandomizer.randomCreatureValue(1, 3) + hitPart.getBonus();
         }
 
         if (attackSuccess) {
             System.out.println("Attack ended succesfully");
-            System.out.println("Potential Injury: " + potentialInjury);
+            System.out.println("Potential Damage: " + potentialDamage);
         }
         else {
             System.out.println("Attack failed");
         }
 
-        return potentialInjury;
+        return new AttackResult(hitPart, 0, potentialDamage);
     }
 
-    public boolean dodge(int potentialInjury, Creature aggressor) {
+    public AttackResult dodge(AttackResult attackResult) {
 
         boolean dodgeSuccess = false;
-        int realInjury = 0;
+        int effectiveDamage = 0;
         int threat = CreaturesRandomizer.randomCreatureValue(1, 10);
         System.out.println("Threat: " + threat);
         if (this.getInitiative() > threat){
             dodgeSuccess = true;
         }
         else {
-            realInjury = potentialInjury - this.getEndurance();
+            effectiveDamage = attackResult.getPotentialDamage() - this.getEndurance();
         }
 
-        if (realInjury > 0) {
-            this.lifePoints = this.lifePoints - realInjury;
+        if (effectiveDamage > 0) {
+            attackResult.setEffectiveDamage(effectiveDamage);
+            this.lifePoints = this.lifePoints - effectiveDamage;
         }
 
         if (dodgeSuccess) {
@@ -140,8 +142,12 @@ public class Creature implements Fightable {
             System.out.println(this.getType() + " is dead");
         }
 
-        return (this.getLifePoints() > 0);
+        return attackResult;
 
+    }
+
+    public boolean isAlive() {
+        return lifePoints > 0;
     }
 
     public BodyPart hit() throws Exception {

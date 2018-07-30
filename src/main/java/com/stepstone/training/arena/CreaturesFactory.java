@@ -18,6 +18,7 @@ class CreaturesFactory {
                 elfBuilder.setNumberOfDodges(value);
                 elfBuilder.setLifePoints(value);
                 elfBuilder.setMapArmour(armour);
+                elfBuilder.setType(CreatureType.ELF);
                 return elfBuilder.build();
             case ORC:
                 Creature.CreatureBuilder orcBuilder = Orc.builder();
@@ -30,6 +31,7 @@ class CreaturesFactory {
                 orcBuilder.setNumberOfDodges(value);
                 orcBuilder.setLifePoints(value);
                 orcBuilder.setMapArmour(armour);
+                orcBuilder.setType(CreatureType.ORC);
                 return orcBuilder.build();
             case DWARF:
                 Creature.CreatureBuilder dwarfBuilder = Dwarf.builder();
@@ -42,6 +44,7 @@ class CreaturesFactory {
                 dwarfBuilder.setNumberOfDodges(value);
                 dwarfBuilder.setLifePoints(value);
                 dwarfBuilder.setMapArmour(armour);
+                dwarfBuilder.setType(CreatureType.DWARF);
                 return dwarfBuilder.build();
             case HUMAN:
                 Creature.CreatureBuilder humanBuilder = Human.builder();
@@ -54,6 +57,7 @@ class CreaturesFactory {
                 humanBuilder.setNumberOfDodges(value);
                 humanBuilder.setLifePoints(value);
                 humanBuilder.setMapArmour(armour);
+                humanBuilder.setType(CreatureType.HUMAN);
                 return humanBuilder.build();
             case TROLL:
                 Creature.CreatureBuilder trollBuilder = Troll.builder();
@@ -66,6 +70,7 @@ class CreaturesFactory {
                 trollBuilder.setNumberOfDodges(value);
                 trollBuilder.setLifePoints(value);
                 trollBuilder.setMapArmour(armour);
+                trollBuilder.setType(CreatureType.TROLL);
                 return trollBuilder.build();
             case HALFING:
                 Creature.CreatureBuilder halfingBuilder = Halfing.builder();
@@ -78,6 +83,7 @@ class CreaturesFactory {
                 halfingBuilder.setNumberOfDodges(value);
                 halfingBuilder.setLifePoints(value);
                 halfingBuilder.setMapArmour(armour);
+                halfingBuilder.setType(CreatureType.HALFING);
                 return halfingBuilder.build();
         }
         return null;

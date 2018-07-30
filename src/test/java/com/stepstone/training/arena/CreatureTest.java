@@ -1,7 +1,8 @@
 package com.stepstone.training.arena;
 
-public class CreatureTest {
+import org.junit.Test;
 
+public class CreatureTest {
 
 
 }

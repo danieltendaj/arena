@@ -2,8 +2,8 @@ package com.stepstone.training.arena;
 
 public interface Fightable {
 
-    int attack(Creature assaulted);
+    AttackResult attack();
 
-    boolean dodge(int potentialInjury, Creature aggressor);
+    AttackResult dodge(AttackResult attackResult);
 
 }

@@ -41,7 +41,7 @@ public class ArenaApplicationTests {
 	public void shouldAttackFailedWhenDexterityEqualsShield() {
 
 		//given
-		final int POTENTIAL_INJURY = 0;
+		final int POTENTIAL_DAMAGE = 0;
 
 		PowerMockito.mockStatic(CreaturesRandomizer.class);
 		when(CreaturesRandomizer.randomCreatureValue(1, 10)).thenReturn(5);
@@ -52,13 +52,12 @@ public class ArenaApplicationTests {
 		Map<Armour, Integer> map = new HashMap<>();
 		map.put(Armour.HELMET, 1);
 		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
-		Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5, map);
 
 		//when
-		int realInjury = elf.attack(human);
+		AttackResult attackResult = elf.attack();
 
 		//then
-		assertTrue(realInjury == POTENTIAL_INJURY);
+		assertTrue(attackResult.getPotentialDamage() == POTENTIAL_DAMAGE);
 
 	}
 
@@ -66,7 +65,7 @@ public class ArenaApplicationTests {
 	public void shouldAttackFailedWhenDexterityLessThenShield() {
 
 		//given
-		final int POTENTIAL_INJURY = 0;
+        final int POTENTIAL_DAMAGE = 0;
 
 		PowerMockito.mockStatic(CreaturesRandomizer.class);
 		when(CreaturesRandomizer.randomCreatureValue(1, 10)).thenReturn(6);
@@ -77,13 +76,12 @@ public class ArenaApplicationTests {
 		Map<Armour, Integer> map = new HashMap<>();
 		map.put(Armour.HELMET, 1);
 		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
-		Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5, map);
 
 		//when
-		int realInjury = elf.attack(human);
+        AttackResult attackResult = elf.attack();
 
-		//then
-		assertTrue(realInjury == POTENTIAL_INJURY);
+        //then
+        assertTrue(attackResult.getPotentialDamage() == POTENTIAL_DAMAGE);
 
 	}
 
@@ -91,7 +89,7 @@ public class ArenaApplicationTests {
 	public void shouldAttackSuccessWhenDexterityGreaterThenShield() {
 
 		//given
-		final int POTENTIAL_INJURY = 5;
+		final int POTENTIAL_DAMAGE = 5;
 
 		PowerMockito.mockStatic(CreaturesRandomizer.class);
 		when(CreaturesRandomizer.randomCreatureValue(1, 10)).thenReturn(4);
@@ -102,13 +100,12 @@ public class ArenaApplicationTests {
 		Map<Armour, Integer> map = new HashMap<>();
 		map.put(Armour.HELMET, 1);
 		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
-		Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5, map);
 
 		//when
-		int realInjury = elf.attack(human);
+        AttackResult attackResult = elf.attack();
 
-		//then
-		assertTrue(realInjury == POTENTIAL_INJURY);
+        //then
+        assertTrue(attackResult.getPotentialDamage() == POTENTIAL_DAMAGE);
 
 	}
 
