@@ -117,13 +117,19 @@ public class Creature implements Fightable {
 
         boolean dodgeSuccess = false;
         int effectiveDamage = 0;
+        int protection = 0;
+        if (getMapProtection().get(attackResult.getHitBodyPart().getProtectionItem()) > 0){
+            mapProtection.put(attackResult.getHitBodyPart().getProtectionItem(), getMapProtection().get(attackResult.getHitBodyPart().getProtectionItem()) - 1);
+            protection = ProtectionItem.valueOf(attackResult.getHitBodyPart().getProtectionItem().toString()).getMaximum();
+        }
+
         int threat = CreaturesRandomizer.randomCreatureValue(1, 10);
         System.out.println("Threat: " + threat);
         if (this.getInitiative() > threat){
             dodgeSuccess = true;
         }
         else {
-            effectiveDamage = attackResult.getPotentialDamage() - this.getEndurance();
+            effectiveDamage = attackResult.getPotentialDamage() - protection - this.getEndurance();
         }
 
         if (effectiveDamage > 0) {
