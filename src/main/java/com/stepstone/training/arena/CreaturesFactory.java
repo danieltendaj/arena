@@ -12,10 +12,7 @@ class CreaturesFactory {
                 elfBuilder.setStrength(value);
                 elfBuilder.setDexterity(value);
                 elfBuilder.setInitiative(value);
-                elfBuilder.setVelocity(value);
                 elfBuilder.setEndurance(value);
-                elfBuilder.setNumberOfAttacks(value);
-                elfBuilder.setNumberOfDodges(value);
                 elfBuilder.setLifePoints(value);
                 elfBuilder.setMapProtection(protection);
                 elfBuilder.setType(CreatureType.ELF);
@@ -25,10 +22,7 @@ class CreaturesFactory {
                 orcBuilder.setStrength(value);
                 orcBuilder.setDexterity(value);
                 orcBuilder.setInitiative(value);
-                orcBuilder.setVelocity(value);
                 orcBuilder.setEndurance(value);
-                orcBuilder.setNumberOfAttacks(value);
-                orcBuilder.setNumberOfDodges(value);
                 orcBuilder.setLifePoints(value);
                 orcBuilder.setMapProtection(protection);
                 orcBuilder.setType(CreatureType.ORC);
@@ -38,10 +32,7 @@ class CreaturesFactory {
                 dwarfBuilder.setStrength(value);
                 dwarfBuilder.setDexterity(value);
                 dwarfBuilder.setInitiative(value);
-                dwarfBuilder.setVelocity(value);
                 dwarfBuilder.setEndurance(value);
-                dwarfBuilder.setNumberOfAttacks(value);
-                dwarfBuilder.setNumberOfDodges(value);
                 dwarfBuilder.setLifePoints(value);
                 dwarfBuilder.setMapProtection(protection);
                 dwarfBuilder.setType(CreatureType.DWARF);
@@ -51,10 +42,7 @@ class CreaturesFactory {
                 humanBuilder.setStrength(value);
                 humanBuilder.setDexterity(value);
                 humanBuilder.setInitiative(value);
-                humanBuilder.setVelocity(value);
                 humanBuilder.setEndurance(value);
-                humanBuilder.setNumberOfAttacks(value);
-                humanBuilder.setNumberOfDodges(value);
                 humanBuilder.setLifePoints(value);
                 humanBuilder.setMapProtection(protection);
                 humanBuilder.setType(CreatureType.HUMAN);
@@ -64,10 +52,7 @@ class CreaturesFactory {
                 trollBuilder.setStrength(value);
                 trollBuilder.setDexterity(value);
                 trollBuilder.setInitiative(value);
-                trollBuilder.setVelocity(value);
                 trollBuilder.setEndurance(value);
-                trollBuilder.setNumberOfAttacks(value);
-                trollBuilder.setNumberOfDodges(value);
                 trollBuilder.setLifePoints(value);
                 trollBuilder.setMapProtection(protection);
                 trollBuilder.setType(CreatureType.TROLL);
@@ -77,10 +62,7 @@ class CreaturesFactory {
                 halfingBuilder.setStrength(value);
                 halfingBuilder.setDexterity(value);
                 halfingBuilder.setInitiative(value);
-                halfingBuilder.setVelocity(value);
                 halfingBuilder.setEndurance(value);
-                halfingBuilder.setNumberOfAttacks(value);
-                halfingBuilder.setNumberOfDodges(value);
                 halfingBuilder.setLifePoints(value);
                 halfingBuilder.setMapProtection(protection);
                 halfingBuilder.setType(CreatureType.HALFING);
