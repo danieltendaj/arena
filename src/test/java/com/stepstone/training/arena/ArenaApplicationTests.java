@@ -16,26 +16,7 @@ import static org.mockito.Mockito.when;
 @PrepareForTest(CreaturesRandomizer.class)
 public class ArenaApplicationTests {
 
-	@Test
-	public void isValueGreaterThanMin(){
 
-		int value = CreaturesRandomizer.randomCreatureValue(10, 20);
-		assertTrue(value >= 10);
-	}
-
-	@Test
-	public void isValueLessThanMax(){
-
-		int value = CreaturesRandomizer.randomCreatureValue(10, 20);
-		assertTrue(value <= 20);
-	}
-
-	@Test
-	public void isValueTheSameMinMax(){
-
-		int value = CreaturesRandomizer.randomCreatureValue(10, 10);
-		assertTrue(value == 10);
-	}
 
 	@Test
 	public void shouldAttackFailedWhenDexterityEqualsShield() {
@@ -49,8 +30,8 @@ public class ArenaApplicationTests {
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
-		Map<Armour, Integer> map = new HashMap<>();
-		map.put(Armour.HELMET, 1);
+		Map<ProtectionItem, Integer> map = new HashMap<>();
+		map.put(ProtectionItem.HELMET, 1);
 		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
 
 		//when
@@ -73,8 +54,8 @@ public class ArenaApplicationTests {
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
-		Map<Armour, Integer> map = new HashMap<>();
-		map.put(Armour.HELMET, 1);
+        Map<ProtectionItem, Integer> map = new HashMap<>();
+        map.put(ProtectionItem.HELMET, 1);
 		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
 
 		//when
@@ -97,8 +78,8 @@ public class ArenaApplicationTests {
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
-		Map<Armour, Integer> map = new HashMap<>();
-		map.put(Armour.HELMET, 1);
+        Map<ProtectionItem, Integer> map = new HashMap<>();
+        map.put(ProtectionItem.HELMET, 1);
 		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
 
 		//when
@@ -118,8 +99,8 @@ public class ArenaApplicationTests {
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
-		Map<Armour, Integer> map = new HashMap<>();
-		map.put(Armour.HELMET, 1);
+        Map<ProtectionItem, Integer> map = new HashMap<>();
+        map.put(ProtectionItem.HELMET, 1);
 		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
 
 		BodyPart hitPart = null;
@@ -144,8 +125,8 @@ public class ArenaApplicationTests {
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
-		Map<Armour, Integer> map = new HashMap<>();
-		map.put(Armour.HELMET, 1);
+        Map<ProtectionItem, Integer> map = new HashMap<>();
+        map.put(ProtectionItem.HELMET, 1);
 		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
 
 		BodyPart hitPart = null;
@@ -168,8 +149,8 @@ public class ArenaApplicationTests {
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
-		Map<Armour, Integer> map = new HashMap<>();
-		map.put(Armour.HELMET, 1);
+        Map<ProtectionItem, Integer> map = new HashMap<>();
+        map.put(ProtectionItem.HELMET, 1);
 		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
 
 		BodyPart hitPart = null;

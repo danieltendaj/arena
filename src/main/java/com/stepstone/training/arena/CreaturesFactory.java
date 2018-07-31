@@ -4,7 +4,7 @@ import java.util.*;
 
 class CreaturesFactory {
 
-    Creature generate(CreatureType type, int value, Map<Armour, Integer> armour) {
+    Creature generate(CreatureType type, int value, Map<ProtectionItem, Integer> protection) {
 
         switch (type) {
             case ELF:
@@ -17,7 +17,7 @@ class CreaturesFactory {
                 elfBuilder.setNumberOfAttacks(value);
                 elfBuilder.setNumberOfDodges(value);
                 elfBuilder.setLifePoints(value);
-                elfBuilder.setMapArmour(armour);
+                elfBuilder.setMapProtection(protection);
                 elfBuilder.setType(CreatureType.ELF);
                 return elfBuilder.build();
             case ORC:
@@ -30,7 +30,7 @@ class CreaturesFactory {
                 orcBuilder.setNumberOfAttacks(value);
                 orcBuilder.setNumberOfDodges(value);
                 orcBuilder.setLifePoints(value);
-                orcBuilder.setMapArmour(armour);
+                orcBuilder.setMapProtection(protection);
                 orcBuilder.setType(CreatureType.ORC);
                 return orcBuilder.build();
             case DWARF:
@@ -43,7 +43,7 @@ class CreaturesFactory {
                 dwarfBuilder.setNumberOfAttacks(value);
                 dwarfBuilder.setNumberOfDodges(value);
                 dwarfBuilder.setLifePoints(value);
-                dwarfBuilder.setMapArmour(armour);
+                dwarfBuilder.setMapProtection(protection);
                 dwarfBuilder.setType(CreatureType.DWARF);
                 return dwarfBuilder.build();
             case HUMAN:
@@ -56,7 +56,7 @@ class CreaturesFactory {
                 humanBuilder.setNumberOfAttacks(value);
                 humanBuilder.setNumberOfDodges(value);
                 humanBuilder.setLifePoints(value);
-                humanBuilder.setMapArmour(armour);
+                humanBuilder.setMapProtection(protection);
                 humanBuilder.setType(CreatureType.HUMAN);
                 return humanBuilder.build();
             case TROLL:
@@ -69,7 +69,7 @@ class CreaturesFactory {
                 trollBuilder.setNumberOfAttacks(value);
                 trollBuilder.setNumberOfDodges(value);
                 trollBuilder.setLifePoints(value);
-                trollBuilder.setMapArmour(armour);
+                trollBuilder.setMapProtection(protection);
                 trollBuilder.setType(CreatureType.TROLL);
                 return trollBuilder.build();
             case HALFING:
@@ -82,7 +82,7 @@ class CreaturesFactory {
                 halfingBuilder.setNumberOfAttacks(value);
                 halfingBuilder.setNumberOfDodges(value);
                 halfingBuilder.setLifePoints(value);
-                halfingBuilder.setMapArmour(armour);
+                halfingBuilder.setMapProtection(protection);
                 halfingBuilder.setType(CreatureType.HALFING);
                 return halfingBuilder.build();
         }
@@ -95,12 +95,12 @@ class CreaturesFactory {
         return CreatureType.values()[randomGenerator.nextInt(creatureTypeNumber)];
     }
 
-    Map<Armour, Integer> randomArmour(){
-        Map<Armour, Integer> map = new HashMap<>();
+    Map<ProtectionItem, Integer> randomProtectionItem(){
+        Map<ProtectionItem, Integer> map = new HashMap<>();
         int numberArmours;
-        for (Armour armour:Armour.values()) {
+        for (ProtectionItem protectionItem:ProtectionItem.values()) {
             numberArmours = CreaturesRandomizer.randomCreatureValue(0, 2);
-            map.put(armour, numberArmours);
+            map.put(protectionItem, numberArmours);
         }
         return map;
     }
@@ -108,8 +108,8 @@ class CreaturesFactory {
     Creature randomCreature() {
         CreatureType randomType = randomCreatureType();
         int randomValue = CreaturesRandomizer.randomCreatureValue(5, 15);
-        Map<Armour, Integer> randomArmour = randomArmour();
-        return generate(randomType, randomValue, randomArmour);
+        Map<ProtectionItem, Integer> randomProtectionItem = randomProtectionItem();
+        return generate(randomType, randomValue, randomProtectionItem);
     }
 
     List<Creature> randomCreatureList(int listSize) {

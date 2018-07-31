@@ -14,7 +14,7 @@ public class Creature implements Fightable {
     private Integer numberOfDodges;
     private Integer lifePoints;
     private CreatureType type;
-    private Map<Armour, Integer> mapArmour;
+    private Map<ProtectionItem, Integer> mapProtection;
 
     Creature() {
     }
@@ -55,8 +55,8 @@ public class Creature implements Fightable {
         return type;
     }
 
-    public Map<Armour, Integer> getMapArmour() {
-        return mapArmour;
+    public Map<ProtectionItem, Integer> getMapProtection() {
+        return mapProtection;
     }
 
     @Override
@@ -234,8 +234,8 @@ public class Creature implements Fightable {
             return this;
         }
 
-        public CreatureBuilder setMapArmour(Map<Armour, Integer> mapArmour) {
-            creature.mapArmour = mapArmour;
+        public CreatureBuilder setMapProtection(Map<ProtectionItem, Integer> mapProtection) {
+            creature.mapProtection = mapProtection;
             return this;
         }
 
