@@ -117,11 +117,7 @@ public class Creature implements Fightable {
 
         boolean dodgeSuccess = false;
         int effectiveDamage = 0;
-        int protection = 0;
-        if (getMapProtection().get(attackResult.getHitBodyPart().getProtectionItem()) > 0){
-            mapProtection.put(attackResult.getHitBodyPart().getProtectionItem(), getMapProtection().get(attackResult.getHitBodyPart().getProtectionItem()) - 1);
-            protection = ProtectionItem.valueOf(attackResult.getHitBodyPart().getProtectionItem().toString()).getMaximum();
-        }
+        int protection = calculateProtection(attackResult);
 
         int threat = CreaturesRandomizer.randomCreatureValue(1, 10);
         System.out.println("Threat: " + threat);
@@ -186,6 +182,15 @@ public class Creature implements Fightable {
         else {
             return bodyPartHit;
         }
+    }
+
+    public int calculateProtection(AttackResult attackResult){
+        int protection = 0;
+        if (getMapProtection().get(attackResult.getHitBodyPart().getProtectionItem()) > 0){
+            mapProtection.put(attackResult.getHitBodyPart().getProtectionItem(), getMapProtection().get(attackResult.getHitBodyPart().getProtectionItem()) - 1);
+            protection = ProtectionItem.valueOf(attackResult.getHitBodyPart().getProtectionItem().toString()).getMaximum();
+        }
+        return protection;
     }
 
     public static CreatureBuilder builder(){
