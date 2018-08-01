@@ -186,11 +186,17 @@ public class Creature implements Fightable {
 
     public int calculateProtection(AttackResult attackResult){
         int protection = 0;
-        if (getMapProtection().get(attackResult.getHitBodyPart().getProtectionItem()) > 0){
-            mapProtection.put(attackResult.getHitBodyPart().getProtectionItem(), getMapProtection().get(attackResult.getHitBodyPart().getProtectionItem()) - 1);
-            protection = ProtectionItem.valueOf(attackResult.getHitBodyPart().getProtectionItem().toString()).getMaximum();
+        BodyPart bodyPart = attackResult.getHitBodyPart();
+
+        if (bodyPart != null) {
+            if (getMapProtection().get(bodyPart.getProtectionItem()) > 0){
+                mapProtection.put(attackResult.getHitBodyPart().getProtectionItem(), getMapProtection().get(attackResult.getHitBodyPart().getProtectionItem()) - 1);
+                protection = ProtectionItem.valueOf(attackResult.getHitBodyPart().getProtectionItem().toString()).getMaximum();
+            }
         }
+
         return protection;
+
     }
 
     public static CreatureBuilder builder(){
