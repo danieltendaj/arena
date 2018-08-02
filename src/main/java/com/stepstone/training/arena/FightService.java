@@ -1,9 +1,6 @@
 package com.stepstone.training.arena;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class FightService {
 
@@ -25,4 +22,25 @@ public class FightService {
         }
 
     }
+
+    public List<Fighters> pairs(List<Creature> creaturesList){
+
+        Fighters fighters = new Fighters();
+        List<Fighters> creaturePairList = new ArrayList<Fighters>();
+
+        if (creaturesList.size() == 1){
+            fighters.setFirstFighter(creaturesList.get(0));
+            fighters.setSecondFighter(creaturesList.get(0));
+            creaturePairList.add(fighters);
+        }
+
+        if (creaturesList.size() > 1){
+            fighters.setFirstFighter(creaturesList.get(0));
+            fighters.setSecondFighter(creaturesList.get(1));
+            creaturePairList.add(fighters);
+        }
+
+        return creaturePairList;
+    }
+
 }
