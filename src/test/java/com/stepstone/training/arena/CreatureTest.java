@@ -11,6 +11,28 @@ import static org.junit.Assert.assertTrue;
 public class CreatureTest {
 
     @Test
+    public void shouldAttackDecreasedProtection(){
+
+        //given
+        AttackResult mockAttackResult = mock(AttackResult.class);
+        when(mockAttackResult.getHitBodyPart()).thenReturn(BodyPart.HEAD);
+
+        Map<ProtectionItem, Integer> map = new HashMap<>();
+        map.put(ProtectionItem.HELMET, 2);
+
+        Creature.CreatureBuilder elfBuilder = Elf.builder();
+        elfBuilder.setMapProtection(map);
+        elfBuilder.setType(CreatureType.ELF);
+        Creature elf = elfBuilder.build();
+
+        //when
+        int protection = elf.calculateProtection(mockAttackResult);
+
+        //then
+        assertTrue(elf.getMapProtection().get(ProtectionItem.HELMET) == 1);
+    }
+
+    @Test
     public void shouldHelmetProtectHeadWithValue2(){
 
         //given
@@ -27,8 +49,10 @@ public class CreatureTest {
 
         //when
         int protection = elf.calculateProtection(mockAttackResult);
+
         //then
         assertTrue(protection == 2);
+        assertTrue(elf.getMapProtection().get(ProtectionItem.HELMET) == 0);
     }
 
     @Test
@@ -48,8 +72,10 @@ public class CreatureTest {
 
         //when
         int protection = elf.calculateProtection(mockAttackResult);
+
         //then
         assertTrue(protection == 0);
+        assertTrue(elf.getMapProtection().get(ProtectionItem.HELMET) == 0);
     }
 
 }
