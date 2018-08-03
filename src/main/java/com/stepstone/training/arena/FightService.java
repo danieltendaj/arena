@@ -23,24 +23,36 @@ public class FightService {
 
     }
 
-    public List<Fighters> pairs(List<Creature> creaturesList){
+    public List<Fighters> pairs(List<Creature> creaturesList) {
 
         Fighters fighters = new Fighters();
         List<Fighters> creaturePairList = new ArrayList<Fighters>();
 
-        if (creaturesList.size() == 1){
-            fighters.setFirstFighter(creaturesList.get(0));
-            fighters.setSecondFighter(creaturesList.get(0));
-            creaturePairList.add(fighters);
-        }
+        if (creaturesList.size() > 0) {
 
-        if (creaturesList.size() > 1){
-            fighters.setFirstFighter(creaturesList.get(0));
-            fighters.setSecondFighter(creaturesList.get(1));
-            creaturePairList.add(fighters);
+            List<Creature> list1 = new LinkedList(creaturesList);
+            List<Creature> list2 = new LinkedList(creaturesList);
+
+            ((LinkedList<Creature>) list2).removeFirst();
+
+            for (Creature creature1 : list1) {
+
+                if (creature1 != ((LinkedList<Creature>) list1).getLast()){
+                    fighters.setFirstFighter(creature1);
+
+                    for (Creature creature2 : list2) {
+                        fighters.setSecondFighter(creature2);
+                        creaturePairList.add(fighters);
+                    }
+
+                    ((LinkedList<Creature>) list2).removeFirst();
+
+                }
+
+            }
+
         }
 
         return creaturePairList;
     }
-
 }
