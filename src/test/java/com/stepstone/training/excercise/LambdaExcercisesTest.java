@@ -52,4 +52,23 @@ public class LambdaExcercisesTest {
 
         assertTrue(list.get(0) == human && list.get(1) == elf);
     }
+
+    @Test
+    public void shouldMaxPointsCreatureReturnProperValue() {
+        //given
+        CreaturesFactory creaturesFactory = new CreaturesFactory();
+        Map<ProtectionItem, Integer> map = new HashMap<>();
+        map.put(ProtectionItem.HELMET, 2);
+
+        Creature elf = creaturesFactory.generate(CreatureType.ELF, 6, map);
+        Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5, map);
+        List<Creature> list = new ArrayList<>();
+        list.add(elf);
+        list.add(human);
+
+        LambdaExcercises lambdaExcercises = new LambdaExcercises();
+
+        assertTrue(lambdaExcercises.maxPointsCreature(list).getSumPoints() == 24);
+    }
+
 }

@@ -59,6 +59,10 @@ public class Creature implements Fightable {
         return mapProtection;
     }
 
+    public Integer getSumPoints(){
+        return  strength + dexterity + initiative + endurance;
+    }
+
     @Override
     public String toString() {
         return "Creature{" +

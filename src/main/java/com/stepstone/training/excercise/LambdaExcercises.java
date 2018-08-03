@@ -3,6 +3,7 @@ package com.stepstone.training.excercise;
 import com.stepstone.training.arena.Creature;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class LambdaExcercises {
@@ -19,6 +20,9 @@ public class LambdaExcercises {
         return list;
     }
 
+    public Creature maxPointsCreature(List<Creature> list) {
 
+        return list.stream().max(Comparator.comparingInt(Creature::getSumPoints)).get();
+    }
 
 }
