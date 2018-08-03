@@ -94,7 +94,7 @@ public class CreaturesFactory {
         return generate(randomType, randomValue, randomProtectionItem);
     }
 
-    List<Creature> randomCreatureList(int listSize) {
+    public List<Creature> randomCreatureList(int listSize) {
         List<Creature> list = new ArrayList<>();
         for (int i = 0; i < listSize; i++) {
             list.add(randomCreature());

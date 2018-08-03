@@ -9,6 +9,7 @@ public class ArenaApplication {
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
 		List<Creature> list = creaturesFactory.randomCreatureList(2);
+
 		for (Creature x:list) {
 			System.out.println(x.toString());
 		}
