@@ -2,9 +2,9 @@ package com.stepstone.training.arena;
 
 import java.util.*;
 
-class CreaturesFactory {
+public class CreaturesFactory {
 
-    Creature generate(CreatureType type, int value, Map<ProtectionItem, Integer> protection) {
+    public Creature generate(CreatureType type, int value, Map<ProtectionItem, Integer> protection) {
 
         switch (type) {
             case ELF:
