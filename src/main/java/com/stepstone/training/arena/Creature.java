@@ -2,6 +2,7 @@ package com.stepstone.training.arena;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class Creature implements Fightable {
 
@@ -83,13 +84,12 @@ public class Creature implements Fightable {
 
         boolean attackSuccess = false;
         int potentialDamage = 0;
-        BodyPart hitPart = null;
-        try {
-            hitPart = hit();
+        BodyPart hitPart = hit().orElse(BodyPart.MISSED);
+        if (hitPart != BodyPart.MISSED){
             attackSuccess = true;
         }
-        catch (Exception e) {
-            System.out.println(e);
+        else{
+            System.out.println("Missed!");
         }
 
         if (!attackSuccess){
@@ -156,9 +156,8 @@ public class Creature implements Fightable {
         return lifePoints > 0;
     }
 
-    public BodyPart hit() throws Exception {
+    public Optional<BodyPart> hit() {
 
-        boolean doHit = false;
         int result = 0;
         BodyPart bodyPartHit = null;
 
@@ -181,10 +180,10 @@ public class Creature implements Fightable {
         bodyPartHit = tableBodyParts.get(result);
 
         if (bodyPartHit == null){
-            throw new Exception("Missed");
+            return Optional.empty();
         }
         else {
-            return bodyPartHit;
+            return Optional.of(bodyPartHit);
         }
     }
 
@@ -192,7 +191,7 @@ public class Creature implements Fightable {
         int protection = 0;
         BodyPart bodyPart = attackResult.getHitBodyPart();
 
-        if (bodyPart != null) {
+        if (bodyPart != BodyPart.MISSED) {
             if (getMapProtection().get(bodyPart.getProtectionItem()) > 0){
                 mapProtection.put(attackResult.getHitBodyPart().getProtectionItem(), getMapProtection().get(attackResult.getHitBodyPart().getProtectionItem()) - 1);
                 protection = ProtectionItem.valueOf(attackResult.getHitBodyPart().getProtectionItem().toString()).getMaximum();

@@ -7,7 +7,8 @@ public enum BodyPart {
     RIGHT_ARM (10, 1, ProtectionItem.GLOVES),
     TRUNK (30, 0, ProtectionItem.CHESTPLATE),
     LEFT_LEG (5, 2, ProtectionItem.GREAVES),
-    RIGHT_LEG (5, 2, ProtectionItem.GREAVES);
+    RIGHT_LEG (5, 2, ProtectionItem.GREAVES),
+    MISSED (0, 0, null);
 
     private final int probability;
     private final int bonus;

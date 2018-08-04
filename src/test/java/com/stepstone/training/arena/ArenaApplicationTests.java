@@ -90,8 +90,8 @@ public class ArenaApplicationTests {
 
 	}
 
-	@Test(expected = Exception.class)
-	public void shouldHitReturnExceptionWhenMissed(){
+	@Test
+	public void shouldHitReturnOptionalEmptyWhenMissed(){
 
 		//given
 		PowerMockito.mockStatic(CreaturesRandomizer.class);
@@ -103,16 +103,8 @@ public class ArenaApplicationTests {
         map.put(ProtectionItem.HELMET, 1);
 		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
 
-		BodyPart hitPart = null;
-		//when
-		try {
-			hitPart = elf.hit();
-		}
-		catch (Exception e) {
-			System.out.println(e);
-		}
-
-		System.out.println(hitPart.getBonus());
+		//then
+		assertTrue(!elf.hit().isPresent());
 
 	}
 
@@ -131,11 +123,8 @@ public class ArenaApplicationTests {
 
 		BodyPart hitPart = null;
 		//when
-		try {
-			hitPart = elf.hit();
-		}
-		catch (Exception e) {
-			System.out.println(e);
+		if (elf.hit().isPresent()){
+			hitPart = elf.hit().get();
 		}
 
 		//then
@@ -162,13 +151,8 @@ public class ArenaApplicationTests {
 		}
 
 		for (int i = 1; i < 10000; i++){
-			try {
-				hitPart = elf.hit();
-				drawResults.put(hitPart, drawResults.get(hitPart) + 1);
-			}
-			catch (Exception e) {
-				//System.out.println(e);
-			}
+			hitPart = elf.hit().orElse(BodyPart.MISSED);
+			drawResults.put(hitPart, drawResults.get(hitPart) + 1);
 		}
 
 		for (Map.Entry<BodyPart, Integer> entry : drawResults.entrySet()){
