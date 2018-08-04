@@ -71,4 +71,32 @@ public class LambdaExcercisesTest {
         assertTrue(lambdaExcercises.maxPointsCreature(list).getSumPoints() == 24);
     }
 
+    @Test
+    public void shouldMapCreaturesReturnProperMap() {
+        //given
+        CreaturesFactory creaturesFactory = new CreaturesFactory();
+        Map<ProtectionItem, Integer> map = new HashMap<>();
+        map.put(ProtectionItem.HELMET, 2);
+
+        Creature elf1 = creaturesFactory.generate(CreatureType.ELF, 6, map);
+        Creature elf2 = creaturesFactory.generate(CreatureType.ELF, 7, map);
+        Creature elf3 = creaturesFactory.generate(CreatureType.ELF, 8, map);
+        Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5, map);
+        List<Creature> list = new ArrayList<>();
+        list.add(elf1);
+        list.add(human);
+        list.add(elf2);
+        list.add(elf3);
+
+        LambdaExcercises lambdaExcercises = new LambdaExcercises();
+
+        Map<CreatureType, List<Creature>> mapa = lambdaExcercises.mapCreatures(list);
+
+        for (Map.Entry<CreatureType, List<Creature>> entry : mapa.entrySet()){
+            System.out.println("Creature Type : " + entry.getKey() + " Quantity : " + entry.getValue().size());
+        }
+
+        assertTrue(mapa.size() == 2);
+    }
+
 }

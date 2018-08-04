@@ -1,10 +1,13 @@
 package com.stepstone.training.excercise;
 
 import com.stepstone.training.arena.Creature;
+import com.stepstone.training.arena.CreatureType;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LambdaExcercises {
 
@@ -23,6 +26,11 @@ public class LambdaExcercises {
     public Creature maxPointsCreature(List<Creature> list) {
 
         return list.stream().max(Comparator.comparingInt(Creature::getSumPoints)).get();
+    }
+
+    public Map<CreatureType, List<Creature>> mapCreatures(List<Creature> list) {
+
+        return list.stream().collect(Collectors.groupingBy(Creature::getType));
     }
 
 }
