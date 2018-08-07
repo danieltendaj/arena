@@ -8,14 +8,14 @@ public class ArenaApplication {
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
-		List<Creature> list = creaturesFactory.randomCreatureList(2);
+		List<Creature> list = creaturesFactory.randomCreatureList(5);
 
 		for (Creature x:list) {
 			System.out.println(x.toString());
 		}
 
 		FightService fightService = new FightService();
-		fightService.fight(list.get(0), list.get(1));
+		fightService.tournament(list);
 
 	}
 }

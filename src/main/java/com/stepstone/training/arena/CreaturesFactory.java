@@ -20,6 +20,7 @@ public class CreaturesFactory {
                 return elfBuilder.build();
             case ORC:
                 Creature.CreatureBuilder orcBuilder = Orc.builder();
+                orcBuilder.setName(name);
                 orcBuilder.setStrength(strength);
                 orcBuilder.setDexterity(dexterity);
                 orcBuilder.setInitiative(initiative);
@@ -30,6 +31,7 @@ public class CreaturesFactory {
                 return orcBuilder.build();
             case DWARF:
                 Creature.CreatureBuilder dwarfBuilder = Dwarf.builder();
+                dwarfBuilder.setName(name);
                 dwarfBuilder.setStrength(strength);
                 dwarfBuilder.setDexterity(dexterity);
                 dwarfBuilder.setInitiative(initiative);
@@ -40,6 +42,7 @@ public class CreaturesFactory {
                 return dwarfBuilder.build();
             case HUMAN:
                 Creature.CreatureBuilder humanBuilder = Human.builder();
+                humanBuilder.setName(name);
                 humanBuilder.setStrength(strength);
                 humanBuilder.setDexterity(dexterity);
                 humanBuilder.setInitiative(initiative);
@@ -50,6 +53,7 @@ public class CreaturesFactory {
                 return humanBuilder.build();
             case TROLL:
                 Creature.CreatureBuilder trollBuilder = Troll.builder();
+                trollBuilder.setName(name);
                 trollBuilder.setStrength(strength);
                 trollBuilder.setDexterity(dexterity);
                 trollBuilder.setInitiative(initiative);
@@ -59,15 +63,16 @@ public class CreaturesFactory {
                 trollBuilder.setType(CreatureType.TROLL);
                 return trollBuilder.build();
             case HALFLING:
-                Creature.CreatureBuilder halfingBuilder = Halfling.builder();
-                halfingBuilder.setStrength(strength);
-                halfingBuilder.setDexterity(dexterity);
-                halfingBuilder.setInitiative(initiative);
-                halfingBuilder.setEndurance(endurance);
-                halfingBuilder.setLifePoints(lifepoints);
-                halfingBuilder.setMapProtection(protection);
-                halfingBuilder.setType(CreatureType.HALFLING);
-                return halfingBuilder.build();
+                Creature.CreatureBuilder halflingBuilder = Halfling.builder();
+                halflingBuilder.setName(name);
+                halflingBuilder.setStrength(strength);
+                halflingBuilder.setDexterity(dexterity);
+                halflingBuilder.setInitiative(initiative);
+                halflingBuilder.setEndurance(endurance);
+                halflingBuilder.setLifePoints(lifepoints);
+                halflingBuilder.setMapProtection(protection);
+                halflingBuilder.setType(CreatureType.HALFLING);
+                return halflingBuilder.build();
         }
         return null;
     }
@@ -81,11 +86,12 @@ public class CreaturesFactory {
     String randomName(){
         final String LETTERS = "abcdefghijklmnopqrstuvwxyz";
 
-        char[] name = null;
         int length = CreaturesRandomizer.randomCreatureValue(3, 10);
 
+        char[] name = new char[length];
+
         for (int i = 0; i < length; i++){
-            name[i] = LETTERS.charAt(CreaturesRandomizer.randomCreatureValue(1, LETTERS.length()));
+            name[i] = LETTERS.charAt(CreaturesRandomizer.randomCreatureValue(1, LETTERS.length()) - 1);
         }
 
         return String.valueOf(name);

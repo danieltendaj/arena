@@ -55,4 +55,13 @@ public class FightService {
 
         return creaturePairList;
     }
+
+    public void tournament(List<Creature> creaturesList){
+
+        List<Fighters> fightersList = pairs(creaturesList);
+        for (Fighters fighters:fightersList){
+            fight(fighters.getFirstFighter(), fighters.getSecondFighter());
+        }
+    }
+
 }

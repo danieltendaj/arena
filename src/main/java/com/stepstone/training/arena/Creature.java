@@ -76,7 +76,6 @@ public class Creature implements Fightable {
                 ", strength=" + strength +
                 ", dexterity=" + dexterity +
                 ", initiative=" + initiative +
-                ", velocity=" + velocity +
                 ", endurance=" + endurance +
                 ", numberOfAttacks=" + numberOfAttacks +
                 ", numberOfDodges=" + numberOfDodges +
