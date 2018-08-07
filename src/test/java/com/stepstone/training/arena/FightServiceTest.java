@@ -19,8 +19,8 @@ public class FightServiceTest {
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.HELMET, 2);
 
-        Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
-        Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5, map);
+        Creature elf = creaturesFactory.generate(CreatureType.ELF, "Legolas", 5, 5, 5, 5, 5, map);
+        Creature human = creaturesFactory.generate(CreatureType.HUMAN, "Aragorn", 5,5, 5, 5, 5, map);
 
         FightService fightService = new FightService();
         List<Creature> list = new ArrayList<>();
@@ -38,8 +38,8 @@ public class FightServiceTest {
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.HELMET, 2);
 
-        Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
-        Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5, map);
+        Creature elf = creaturesFactory.generate(CreatureType.ELF, "Legolas", 5, 5, 5, 5, 5, map);
+        Creature human = creaturesFactory.generate(CreatureType.HUMAN, "Aragorn", 5,5, 5, 5, 5, map);
 
         FightService fightService = new FightService();
         List<Creature> list = new ArrayList<>();
@@ -59,15 +59,15 @@ public class FightServiceTest {
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.HELMET, 2);
 
-        Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
-        Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5, map);
-        Creature halfing = creaturesFactory.generate(CreatureType.HALFING, 5, map);
+        Creature elf = creaturesFactory.generate(CreatureType.ELF, "Legolas", 5, 5, 5, 5, 5, map);
+        Creature human = creaturesFactory.generate(CreatureType.HUMAN, "Aragorn", 5,5, 5, 5, 5, map);
+        Creature halfling = creaturesFactory.generate(CreatureType.HALFLING, "Bilbo", 5,5, 5, 5, 5, map);
 
         FightService fightService = new FightService();
         List<Creature> list = new ArrayList<>();
         list.add(elf);
         list.add(human);
-        list.add(halfing);
+        list.add(halfling);
 
         //then
         assertTrue(fightService.pairs(list).size() == 3);
@@ -82,18 +82,18 @@ public class FightServiceTest {
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.HELMET, 2);
 
-        Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
-        Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5, map);
-        Creature halfing = creaturesFactory.generate(CreatureType.HALFING, 5, map);
-        Creature orc = creaturesFactory.generate(CreatureType.ORC, 5, map);
-        Creature troll = creaturesFactory.generate(CreatureType.TROLL, 5, map);
-        Creature dwarf = creaturesFactory.generate(CreatureType.DWARF, 5, map);
+        Creature elf = creaturesFactory.generate(CreatureType.ELF, "Legolas", 5, 5, 5, 5, 5, map);
+        Creature human = creaturesFactory.generate(CreatureType.HUMAN, "Aragorn", 5,5, 5, 5, 5, map);
+        Creature halfling = creaturesFactory.generate(CreatureType.HALFLING, "Bilbo", 5,5, 5, 5, 5, map);
+        Creature orc = creaturesFactory.generate(CreatureType.ORC, "Azor", 5, 5, 5, 5, 5, map);
+        Creature troll = creaturesFactory.generate(CreatureType.TROLL, "Bert", 5,5, 5, 5, 5, map);
+        Creature dwarf = creaturesFactory.generate(CreatureType.DWARF, "Gimli", 5,5, 5, 5, 5, map);
 
         FightService fightService = new FightService();
         List<Creature> list = new ArrayList<>();
         list.add(elf);
         list.add(human);
-        list.add(halfing);
+        list.add(halfling);
         list.add(orc);
         list.add(troll);
         list.add(dwarf);

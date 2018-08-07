@@ -6,6 +6,7 @@ import java.util.Optional;
 
 public class Creature implements Fightable {
 
+    private String name;
     private Integer strength;
     private Integer dexterity;
     private Integer initiative;
@@ -18,6 +19,10 @@ public class Creature implements Fightable {
     private Map<ProtectionItem, Integer> mapProtection;
 
     Creature() {
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Integer getStrength() {
@@ -67,7 +72,8 @@ public class Creature implements Fightable {
     @Override
     public String toString() {
         return "Creature{" +
-                "strength=" + strength +
+                "name=" + name +
+                ", strength=" + strength +
                 ", dexterity=" + dexterity +
                 ", initiative=" + initiative +
                 ", velocity=" + velocity +
@@ -208,6 +214,11 @@ public class Creature implements Fightable {
 
     public static class CreatureBuilder {
         private Creature creature = new Creature();
+
+        public CreatureBuilder setName(String name) {
+            creature.name = name;
+            return this;
+        }
 
         public CreatureBuilder setStrength(Integer strength) {
             creature.strength = strength;

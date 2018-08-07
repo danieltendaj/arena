@@ -32,7 +32,7 @@ public class ArenaApplicationTests {
 
 		Map<ProtectionItem, Integer> map = new HashMap<>();
 		map.put(ProtectionItem.HELMET, 1);
-		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
+		Creature elf = creaturesFactory.generate(CreatureType.ELF, "Legolas", 5, 5, 5, 5, 5, map);
 
 		//when
 		AttackResult attackResult = elf.attack();
@@ -56,7 +56,7 @@ public class ArenaApplicationTests {
 
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.HELMET, 1);
-		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
+		Creature elf = creaturesFactory.generate(CreatureType.ELF, "Legolas", 5, 5, 5, 5, 5, map);
 
 		//when
         AttackResult attackResult = elf.attack();
@@ -80,7 +80,7 @@ public class ArenaApplicationTests {
 
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.HELMET, 1);
-		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
+		Creature elf = creaturesFactory.generate(CreatureType.ELF, "Legolas", 5, 5, 5, 5, 5, map);
 
 		//when
         AttackResult attackResult = elf.attack();
@@ -101,7 +101,7 @@ public class ArenaApplicationTests {
 
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.HELMET, 1);
-		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
+		Creature elf = creaturesFactory.generate(CreatureType.ELF, "Legolas", 5, 5, 5, 5, 5, map);
 
 		//then
 		assertTrue(!elf.hit().isPresent());
@@ -119,7 +119,7 @@ public class ArenaApplicationTests {
 
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.HELMET, 1);
-		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
+		Creature elf = creaturesFactory.generate(CreatureType.ELF, "Legolas", 5, 5, 5, 5, 5, map);
 
 		BodyPart hitPart = null;
 		//when
@@ -140,7 +140,7 @@ public class ArenaApplicationTests {
 
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.HELMET, 1);
-		Creature elf = creaturesFactory.generate(CreatureType.ELF, 5, map);
+		Creature elf = creaturesFactory.generate(CreatureType.ELF, "Legolas", 5, 5, 5, 5, 5, map);
 
 		BodyPart hitPart = null;
 

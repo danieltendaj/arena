@@ -22,8 +22,8 @@ public class LambdaExcercisesTest {
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.HELMET, 2);
 
-        Creature elf = creaturesFactory.generate(CreatureType.ELF, 6, map);
-        Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5, map);
+        Creature elf = creaturesFactory.generate(CreatureType.ELF, "Legolas", 6, 6, 6, 6, 6, map);
+        Creature human = creaturesFactory.generate(CreatureType.HUMAN, "Aragorn", 5,5, 5, 5, 5, map);
         List<Creature> list = new ArrayList<>();
         list.add(elf);
         list.add(human);
@@ -41,8 +41,9 @@ public class LambdaExcercisesTest {
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.HELMET, 2);
 
-        Creature elf = creaturesFactory.generate(CreatureType.ELF, 6, map);
-        Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5, map);
+        Creature elf = creaturesFactory.generate(CreatureType.ELF, "Legolas", 6, 6, 6, 6, 6, map);
+        Creature human = creaturesFactory.generate(CreatureType.HUMAN, "Aragorn", 5,5, 5, 5, 5, map);
+
         List<Creature> list = new ArrayList<>();
         list.add(elf);
         list.add(human);
@@ -60,8 +61,9 @@ public class LambdaExcercisesTest {
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.HELMET, 2);
 
-        Creature elf = creaturesFactory.generate(CreatureType.ELF, 6, map);
-        Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5, map);
+        Creature elf = creaturesFactory.generate(CreatureType.ELF, "Legolas", 6, 6, 6, 6, 6, map);
+        Creature human = creaturesFactory.generate(CreatureType.HUMAN, "Aragorn", 5,5, 5, 5, 5, map);
+
         List<Creature> list = new ArrayList<>();
         list.add(elf);
         list.add(human);
@@ -78,10 +80,11 @@ public class LambdaExcercisesTest {
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.HELMET, 2);
 
-        Creature elf1 = creaturesFactory.generate(CreatureType.ELF, 6, map);
-        Creature elf2 = creaturesFactory.generate(CreatureType.ELF, 7, map);
-        Creature elf3 = creaturesFactory.generate(CreatureType.ELF, 8, map);
-        Creature human = creaturesFactory.generate(CreatureType.HUMAN, 5, map);
+        Creature elf1 = creaturesFactory.generate(CreatureType.ELF, "Legolas", 6, 6, 6, 6, 6, map);
+        Creature elf2 = creaturesFactory.generate(CreatureType.ELF, "Elrond", 7, 7, 7, 7, 7, map);
+        Creature elf3 = creaturesFactory.generate(CreatureType.ELF, "Thranduil", 8, 8, 8, 8, 8, map);
+        Creature human = creaturesFactory.generate(CreatureType.HUMAN, "Aragorn", 5,5, 5, 5, 5, map);
+
         List<Creature> list = new ArrayList<>();
         list.add(elf1);
         list.add(human);
