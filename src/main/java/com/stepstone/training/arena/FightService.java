@@ -25,7 +25,7 @@ public class FightService {
 
     public List<Fighters> pairs(List<Creature> creaturesList) {
 
-        Fighters fighters = new Fighters();
+
         List<Fighters> creaturePairList = new ArrayList<Fighters>();
 
         if (creaturesList.size() > 0) {
@@ -36,10 +36,11 @@ public class FightService {
             ((LinkedList<Creature>) list2).removeFirst();
 
             for (Creature creature1 : list1) {
+                Fighters fighters = new Fighters();
 
                 if (creature1 != ((LinkedList<Creature>) list1).getLast()){
-                    fighters.setFirstFighter(creature1);
 
+                    fighters.setFirstFighter(creature1);
                     for (Creature creature2 : list2) {
                         fighters.setSecondFighter(creature2);
                         creaturePairList.add(fighters);
@@ -60,6 +61,7 @@ public class FightService {
 
         List<Fighters> fightersList = pairs(creaturesList);
         for (Fighters fighters:fightersList){
+            System.out.println("Fight between " + fighters.getFirstFighter().toString() + " and " + fighters.getSecondFighter().toString());
             fight(fighters.getFirstFighter(), fighters.getSecondFighter());
         }
     }
