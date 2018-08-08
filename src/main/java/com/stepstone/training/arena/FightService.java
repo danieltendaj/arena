@@ -1,6 +1,10 @@
 package com.stepstone.training.arena;
 
 import java.util.*;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class FightService {
@@ -81,7 +85,7 @@ public class FightService {
         return creaturePairList;
     }
 
-    public void tournament(List<Creature> creaturesList){
+    public void tournament(List<Creature> creaturesList) {
 
         for (Creature creature:creaturesList){
             tournamentResults.put(creature, 0);
@@ -90,9 +94,20 @@ public class FightService {
         List<Fighters> fightersList = pairs(creaturesList);
 
         System.out.println("Tournament results:");
-        for (Fighters fighters:fightersList){
-            System.out.println("Fight between " + fighters.getFirstFighter().toString() + " and " + fighters.getSecondFighter().toString());
-            fight(fighters.getFirstFighter(), fighters.getSecondFighter());
+        Runnable fights = () -> {
+            for (Fighters fighters : fightersList) {
+                System.out.println("Fight between " + fighters.getFirstFighter().toString() + " and " + fighters.getSecondFighter().toString());
+                fight(fighters.getFirstFighter(), fighters.getSecondFighter());
+            }
+        };
+
+        Executor executor = Executors.newCachedThreadPool();
+        executor.execute(fights);
+        ((ExecutorService) executor).shutdown();
+        try {
+            ((ExecutorService) executor).awaitTermination(10, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            System.out.println("Thread interrupted");
         }
 
         Map<Creature, Integer> tournamentSortedResults = tournamentResults.entrySet().stream()
