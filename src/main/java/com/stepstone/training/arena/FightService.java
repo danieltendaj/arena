@@ -1,6 +1,7 @@
 package com.stepstone.training.arena;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class FightService {
 
@@ -94,12 +95,15 @@ public class FightService {
             fight(fighters.getFirstFighter(), fighters.getSecondFighter());
         }
 
+        Map<Creature, Integer> tournamentSortedResults = tournamentResults.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+
         System.out.println();
         System.out.println("Tournament classification:");
-        for (Map.Entry<Creature, Integer> entry : tournamentResults.entrySet()){
+        for (Map.Entry<Creature, Integer> entry : tournamentSortedResults.entrySet()){
             System.out.println("Creature: " + entry.getKey().getName() + ", Points: " + entry.getValue());
         }
-
     }
 
 }
