@@ -4,6 +4,8 @@ import java.util.*;
 
 public class FightService {
 
+    Map<Creature, Integer> tournamentResults = new HashMap<>();
+
     public void fight(Creature creatureFirst, Creature creatureSecond){
 
         int MAX_ROUND = 10;
@@ -27,13 +29,17 @@ public class FightService {
         }
 
         if (!creatureFirst.isAlive()){
+            tournamentResults.put(creatureSecond, tournamentResults.get(creatureSecond) + 2);
             System.out.println(creatureSecond.getName() + " won. Remained life points: " + creatureSecond.getLifePoints());
         }
         else{
             if (!creatureSecond.isAlive()) {
+                tournamentResults.put(creatureFirst, tournamentResults.get(creatureFirst) + 2);
                 System.out.println(creatureFirst.getName() + " won. Remained life points: " + creatureFirst.getLifePoints());
             }
             else {
+                tournamentResults.put(creatureFirst, tournamentResults.get(creatureFirst) + 1);
+                tournamentResults.put(creatureSecond, tournamentResults.get(creatureSecond) + 1);
                 System.out.println("Game ended in a draw. Remained life points: " + creatureFirst.getName() + ": " + creatureFirst.getLifePoints() + ", " + creatureSecond.getName() + ": " + creatureSecond.getLifePoints());
             }
         }
@@ -76,6 +82,10 @@ public class FightService {
 
     public void tournament(List<Creature> creaturesList){
 
+        for (Creature creature:creaturesList){
+            tournamentResults.put(creature, 0);
+        }
+
         List<Fighters> fightersList = pairs(creaturesList);
 
         System.out.println("Tournament results:");
@@ -83,6 +93,13 @@ public class FightService {
             System.out.println("Fight between " + fighters.getFirstFighter().toString() + " and " + fighters.getSecondFighter().toString());
             fight(fighters.getFirstFighter(), fighters.getSecondFighter());
         }
+
+        System.out.println();
+        System.out.println("Tournament classification:");
+        for (Map.Entry<Creature, Integer> entry : tournamentResults.entrySet()){
+            System.out.println("Creature: " + entry.getKey().getName() + ", Points: " + entry.getValue());
+        }
+
     }
 
 }
