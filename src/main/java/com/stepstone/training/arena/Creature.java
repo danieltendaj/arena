@@ -94,13 +94,13 @@ public class Creature implements Fightable {
             attackSuccess = true;
         }
         else{
-            System.out.println("Missed!");
+            //System.out.println("Missed!");
         }
 
         if (!attackSuccess){
 
             int shield = CreaturesRandomizer.randomCreatureValue(1, 10);
-            System.out.println("Shield: " + shield);
+            //System.out.println("Shield: " + shield);
 
             if (this.getDexterity() > shield){
                 attackSuccess = true;
@@ -112,11 +112,11 @@ public class Creature implements Fightable {
         }
 
         if (attackSuccess) {
-            System.out.println("Attack ended succesfully");
-            System.out.println("Potential Damage: " + potentialDamage);
+            //System.out.println("Attack ended succesfully");
+            //System.out.println("Potential Damage: " + potentialDamage);
         }
         else {
-            System.out.println("Attack failed");
+            //System.out.println("Attack failed");
         }
 
         return new AttackResult(hitPart, 0, potentialDamage);
@@ -129,7 +129,7 @@ public class Creature implements Fightable {
         int protection = calculateProtection(attackResult);
 
         int threat = CreaturesRandomizer.randomCreatureValue(1, 10);
-        System.out.println("Threat: " + threat);
+        //System.out.println("Threat: " + threat);
         if (this.getInitiative() > threat){
             dodgeSuccess = true;
         }
@@ -143,14 +143,14 @@ public class Creature implements Fightable {
         }
 
         if (dodgeSuccess) {
-                System.out.println("Dodge ended succesfully");
+                //System.out.println("Dodge ended succesfully");
         }
         else {
-            System.out.println("Remaining life points: " + this.getLifePoints());
+            //System.out.println("Remaining life points: " + this.getLifePoints());
         }
 
         if (this.getLifePoints() <= 0) {
-            System.out.println(this.getType() + " is dead");
+            //System.out.println(this.getType() + " is dead");
         }
 
         return attackResult;

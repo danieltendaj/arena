@@ -10,9 +10,11 @@ public class ArenaApplication {
 
 		List<Creature> list = creaturesFactory.randomCreatureList(5);
 
+		System.out.println("Creatures in the tournament:");
 		for (Creature x:list) {
 			System.out.println(x.toString());
 		}
+		System.out.println();
 
 		FightService fightService = new FightService();
 		fightService.tournament(list);
