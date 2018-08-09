@@ -15,6 +15,7 @@ public class Creature implements Fightable {
     private Integer numberOfAttacks;
     private Integer numberOfDodges;
     private Integer lifePoints;
+    private Integer initialLifePoints;
     private CreatureType type;
     private Map<ProtectionItem, Integer> mapProtection;
 
@@ -55,6 +56,10 @@ public class Creature implements Fightable {
 
     public Integer getLifePoints() {
         return lifePoints;
+    }
+
+    public Integer getInitialLifePoints() {
+        return initialLifePoints;
     }
 
     public CreatureType getType() {
@@ -256,6 +261,7 @@ public class Creature implements Fightable {
 
         public CreatureBuilder setLifePoints(Integer lifePoints) {
             creature.lifePoints = lifePoints;
+            creature.initialLifePoints = lifePoints;
             return this;
         }
 

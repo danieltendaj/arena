@@ -8,7 +8,7 @@ public class ArenaApplication {
 
 		CreaturesFactory creaturesFactory = new CreaturesFactory();
 
-		List<Creature> list = creaturesFactory.randomCreatureList(5);
+		List<Creature> list = creaturesFactory.randomCreatureList(100);
 
 		System.out.println("Creatures in the tournament:");
 		for (Creature x:list) {

@@ -94,15 +94,21 @@ public class FightService {
         List<Fighters> fightersList = pairs(creaturesList);
 
         System.out.println("Tournament results:");
-        Runnable fights = () -> {
-            for (Fighters fighters : fightersList) {
+        Executor executor = Executors.newCachedThreadPool();
+        for (Fighters fighters : fightersList) {
+            Runnable fights = () -> {
                 System.out.println("Fight between " + fighters.getFirstFighter().toString() + " and " + fighters.getSecondFighter().toString());
+                if (fighters.getFirstFighter().getLifePoints() != fighters.getFirstFighter().getInitialLifePoints()){
+                    System.out.println("Expected life points: " + fighters.getFirstFighter().getInitialLifePoints() + ", real life points: " + fighters.getFirstFighter().getLifePoints());
+                }
+                if (fighters.getSecondFighter().getLifePoints() != fighters.getSecondFighter().getInitialLifePoints()){
+                    System.out.println("Expected life points: " + fighters.getSecondFighter().getInitialLifePoints() + ", real life points: " + fighters.getSecondFighter().getLifePoints());
+                }
                 fight(fighters.getFirstFighter(), fighters.getSecondFighter());
-            }
+            };
+            executor.execute(fights);
         };
 
-        Executor executor = Executors.newCachedThreadPool();
-        executor.execute(fights);
         ((ExecutorService) executor).shutdown();
         try {
             ((ExecutorService) executor).awaitTermination(10, TimeUnit.SECONDS);
@@ -116,9 +122,14 @@ public class FightService {
 
         System.out.println();
         System.out.println("Tournament classification:");
+        Integer sumPoints = new Integer(0);
         for (Map.Entry<Creature, Integer> entry : tournamentSortedResults.entrySet()){
+            sumPoints = sumPoints + entry.getValue();
             System.out.println("Creature: " + entry.getKey().getName() + ", Points: " + entry.getValue());
         }
+
+        System.out.println("Sum of figths: " + fightersList.size());
+        System.out.println("Sum of points: " + sumPoints);
     }
 
 }
