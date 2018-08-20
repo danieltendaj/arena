@@ -281,6 +281,47 @@ public class Creature implements Fightable {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Creature)) return false;
 
+        Creature creature = (Creature) o;
 
+        if (getName() != null ? !getName().equals(creature.getName()) : creature.getName() != null) return false;
+        if (getStrength() != null ? !getStrength().equals(creature.getStrength()) : creature.getStrength() != null)
+            return false;
+        if (getDexterity() != null ? !getDexterity().equals(creature.getDexterity()) : creature.getDexterity() != null)
+            return false;
+        if (getInitiative() != null ? !getInitiative().equals(creature.getInitiative()) : creature.getInitiative() != null)
+            return false;
+        if (getVelocity() != null ? !getVelocity().equals(creature.getVelocity()) : creature.getVelocity() != null)
+            return false;
+        if (getEndurance() != null ? !getEndurance().equals(creature.getEndurance()) : creature.getEndurance() != null)
+            return false;
+        if (getNumberOfAttacks() != null ? !getNumberOfAttacks().equals(creature.getNumberOfAttacks()) : creature.getNumberOfAttacks() != null)
+            return false;
+        if (getNumberOfDodges() != null ? !getNumberOfDodges().equals(creature.getNumberOfDodges()) : creature.getNumberOfDodges() != null)
+            return false;
+        if (getInitialLifePoints() != null ? !getInitialLifePoints().equals(creature.getInitialLifePoints()) : creature.getInitialLifePoints() != null)
+            return false;
+        if (getType() != creature.getType()) return false;
+        return getMapProtection() != null ? getMapProtection().equals(creature.getMapProtection()) : creature.getMapProtection() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getName() != null ? getName().hashCode() : 0;
+        result = 31 * result + (getStrength() != null ? getStrength().hashCode() : 0);
+        result = 31 * result + (getDexterity() != null ? getDexterity().hashCode() : 0);
+        result = 31 * result + (getInitiative() != null ? getInitiative().hashCode() : 0);
+        result = 31 * result + (getVelocity() != null ? getVelocity().hashCode() : 0);
+        result = 31 * result + (getEndurance() != null ? getEndurance().hashCode() : 0);
+        result = 31 * result + (getNumberOfAttacks() != null ? getNumberOfAttacks().hashCode() : 0);
+        result = 31 * result + (getNumberOfDodges() != null ? getNumberOfDodges().hashCode() : 0);
+        result = 31 * result + (getInitialLifePoints() != null ? getInitialLifePoints().hashCode() : 0);
+        result = 31 * result + (getType() != null ? getType().hashCode() : 0);
+        result = 31 * result + (getMapProtection() != null ? getMapProtection().hashCode() : 0);
+        return result;
+    }
 }
