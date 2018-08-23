@@ -1,17 +1,14 @@
 package com.stepstone.training.arena;
 
 import java.util.*;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 public class FightService {
 
     Map<Creature, Integer> tournamentResults = new HashMap<>();
 
-    public void fight(Creature creatureFirst, Creature creatureSecond){
+    private void fight(Creature creatureFirst, Creature creatureSecond){
 
         int MAX_ROUND = 10;
         int round = 0;
@@ -22,6 +19,8 @@ public class FightService {
 
         while (creatureFirst.isAlive() && creatureSecond.isAlive() && round < MAX_ROUND){
             AttackResult result = creatureSecond.dodge(creatureFirst.attack());
+
+            System.out.println("Fight between " + creatureFirst.toString() + " and " + creatureSecond.toString());
 
             attacks.get(creatureFirst).add(result);
 
@@ -34,25 +33,25 @@ public class FightService {
         }
 
         if (!creatureFirst.isAlive()){
-            tournamentResults.put(creatureSecond, tournamentResults.get(creatureSecond) + 2);
             System.out.println(creatureSecond.getName() + " won. Remained life points: " + creatureSecond.getLifePoints());
+            tournamentResults.put(creatureSecond, tournamentResults.get(creatureSecond) + 2);
+
         }
         else{
             if (!creatureSecond.isAlive()) {
-                tournamentResults.put(creatureFirst, tournamentResults.get(creatureFirst) + 2);
                 System.out.println(creatureFirst.getName() + " won. Remained life points: " + creatureFirst.getLifePoints());
+                tournamentResults.put(creatureFirst, tournamentResults.get(creatureFirst) + 2);
             }
             else {
+                System.out.println("Game ended in a draw. Remained life points: " + creatureFirst.getName() + ": " + creatureFirst.getLifePoints() + ", " + creatureSecond.getName() + ": " + creatureSecond.getLifePoints());
                 tournamentResults.put(creatureFirst, tournamentResults.get(creatureFirst) + 1);
                 tournamentResults.put(creatureSecond, tournamentResults.get(creatureSecond) + 1);
-                System.out.println("Game ended in a draw. Remained life points: " + creatureFirst.getName() + ": " + creatureFirst.getLifePoints() + ", " + creatureSecond.getName() + ": " + creatureSecond.getLifePoints());
             }
         }
 
     }
 
-    public List<Fighters> pairs(List<Creature> creaturesList) {
-
+    List<Fighters> pairs(List<Creature> creaturesList) {
 
         List<Fighters> creaturePairList = new ArrayList<Fighters>();
 
@@ -69,8 +68,8 @@ public class FightService {
 
                     for (Creature creature2 : list2) {
                         Fighters fighters = new Fighters();
-                        fighters.setFirstFighter(creature1);
-                        fighters.setSecondFighter(creature2);
+                        fighters.setFirstFighter(creature1.copy());
+                        fighters.setSecondFighter(creature2.copy());
                         creaturePairList.add(fighters);
                     }
 
@@ -87,9 +86,12 @@ public class FightService {
 
     public void tournament(List<Creature> creaturesList) {
 
+        System.out.println("Creatures in the tournament:");
         for (Creature creature:creaturesList){
+            System.out.println(creature.getName());
             tournamentResults.put(creature, 0);
         }
+        System.out.println();
 
         List<Fighters> fightersList = pairs(creaturesList);
 
@@ -97,13 +99,6 @@ public class FightService {
         Executor executor = Executors.newCachedThreadPool();
         for (Fighters fighters : fightersList) {
             Runnable fights = () -> {
-                System.out.println("Fight between " + fighters.getFirstFighter().toString() + " and " + fighters.getSecondFighter().toString());
-                if (fighters.getFirstFighter().getLifePoints() != fighters.getFirstFighter().getInitialLifePoints()){
-                    System.out.println("Expected life points: " + fighters.getFirstFighter().getInitialLifePoints() + ", real life points: " + fighters.getFirstFighter().getLifePoints());
-                }
-                if (fighters.getSecondFighter().getLifePoints() != fighters.getSecondFighter().getInitialLifePoints()){
-                    System.out.println("Expected life points: " + fighters.getSecondFighter().getInitialLifePoints() + ", real life points: " + fighters.getSecondFighter().getLifePoints());
-                }
                 fight(fighters.getFirstFighter(), fighters.getSecondFighter());
             };
             executor.execute(fights);

@@ -15,6 +15,7 @@ public class CreaturesFactory {
                 elfBuilder.setInitiative(initiative);
                 elfBuilder.setEndurance(endurance);
                 elfBuilder.setLifePoints(lifepoints);
+                elfBuilder.setInitialLifePoints(lifepoints);
                 elfBuilder.setMapProtection(protection);
                 elfBuilder.setType(CreatureType.ELF);
                 return elfBuilder.build();
@@ -26,6 +27,7 @@ public class CreaturesFactory {
                 orcBuilder.setInitiative(initiative);
                 orcBuilder.setEndurance(endurance);
                 orcBuilder.setLifePoints(lifepoints);
+                orcBuilder.setInitialLifePoints(lifepoints);
                 orcBuilder.setMapProtection(protection);
                 orcBuilder.setType(CreatureType.ORC);
                 return orcBuilder.build();
@@ -37,6 +39,7 @@ public class CreaturesFactory {
                 dwarfBuilder.setInitiative(initiative);
                 dwarfBuilder.setEndurance(endurance);
                 dwarfBuilder.setLifePoints(lifepoints);
+                dwarfBuilder.setInitialLifePoints(lifepoints);
                 dwarfBuilder.setMapProtection(protection);
                 dwarfBuilder.setType(CreatureType.DWARF);
                 return dwarfBuilder.build();
@@ -48,6 +51,7 @@ public class CreaturesFactory {
                 humanBuilder.setInitiative(initiative);
                 humanBuilder.setEndurance(endurance);
                 humanBuilder.setLifePoints(lifepoints);
+                humanBuilder.setInitialLifePoints(lifepoints);
                 humanBuilder.setMapProtection(protection);
                 humanBuilder.setType(CreatureType.HUMAN);
                 return humanBuilder.build();
@@ -59,6 +63,7 @@ public class CreaturesFactory {
                 trollBuilder.setInitiative(initiative);
                 trollBuilder.setEndurance(endurance);
                 trollBuilder.setLifePoints(lifepoints);
+                trollBuilder.setInitialLifePoints(lifepoints);
                 trollBuilder.setMapProtection(protection);
                 trollBuilder.setType(CreatureType.TROLL);
                 return trollBuilder.build();
@@ -70,6 +75,7 @@ public class CreaturesFactory {
                 halflingBuilder.setInitiative(initiative);
                 halflingBuilder.setEndurance(endurance);
                 halflingBuilder.setLifePoints(lifepoints);
+                halflingBuilder.setInitialLifePoints(lifepoints);
                 halflingBuilder.setMapProtection(protection);
                 halflingBuilder.setType(CreatureType.HALFLING);
                 return halflingBuilder.build();
