@@ -204,7 +204,9 @@ public class Creature implements Fightable {
         BodyPart bodyPart = attackResult.getHitBodyPart();
 
         if (bodyPart != BodyPart.MISSED) {
-            if (getMapProtection().get(bodyPart.getProtectionItem()) > 0){
+            ProtectionItem protectionItem = bodyPart.getProtectionItem();
+            System.out.println("protectionItem: " + protectionItem);
+            if (getMapProtection().get(protectionItem) != null && getMapProtection().get(protectionItem) > 0){
                 mapProtection.put(attackResult.getHitBodyPart().getProtectionItem(), getMapProtection().get(attackResult.getHitBodyPart().getProtectionItem()) - 1);
                 protection = ProtectionItem.valueOf(attackResult.getHitBodyPart().getProtectionItem().toString()).getMaximum();
             }
