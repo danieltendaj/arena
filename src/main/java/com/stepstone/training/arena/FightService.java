@@ -1,5 +1,7 @@
 package com.stepstone.training.arena;
 
+import com.google.gson.Gson;
+
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
@@ -84,7 +86,7 @@ public class FightService {
         return creaturePairList;
     }
 
-    public void tournament(List<Creature> creaturesList) {
+    public String tournament(List<Creature> creaturesList) {
 
         System.out.println("Creatures in the tournament:");
         for (Creature creature:creaturesList){
@@ -125,6 +127,10 @@ public class FightService {
 
         System.out.println("Sum of figths: " + fightersList.size());
         System.out.println("Sum of points: " + sumPoints);
+
+        Gson gson = new Gson();
+        return gson.toJson(tournamentSortedResults);
+
     }
 
 }
