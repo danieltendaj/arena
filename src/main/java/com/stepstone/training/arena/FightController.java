@@ -21,9 +21,16 @@ public class FightController {
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.valueOf(protection), 1);
 
-        list.add(creaturesFactory.generate(CreatureType.valueOf(type), name, strength, dexterity, initiative, endurance, lifepoints, map));
+        Creature creature = creaturesFactory.generate(CreatureType.valueOf(type), name, strength, dexterity, initiative, endurance, lifepoints, map);
 
-        return name + " succesfully created";
+        if (list.contains(creature)){
+            return name + " - there is already such creature";
+        }
+        else {
+            list.add(creature);
+            return name + " succesfully created";
+        }
+
     }
 
     @GetMapping("/tournament")
