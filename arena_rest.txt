@@ -1,0 +1,40 @@
+﻿GET \fighters
+List of all fighters registered into tournament.
+
+GET \fighter\<fighter name>
+Info about specific fighter.
+
+POST \fighter 
+(type, name, ...)
+Create new fighter or return error when already exists or there is problem with other parameters or tournament already started.
+
+DELETE \fighter\<fighter name>
+Delete fighter from the tournament (if exists).
+
+PUT \fighter\<fighter name> (type, ...)
+Amend fighter.
+
+POST \tournament
+Starting tournament.
+If there are no enough fighters (0 or 1) return error.
+
+GET \tournament
+Return: 
+Status of tournament.
+* NOT STARTED
+* STARTED
+* COMPLETED
+Number of fighters.
+Number of fights.
+Classification.
+Results.
+
+GET \species
+List of types of creatures.
+
+GET \protections
+List of types of protection items.
+
+https://mickl.net/2016/10/10/8-rzeczy-ktore-warto-wiedziec-projektujac-rest-owe-api/
+https://dzone.com/articles/put-vs-post
+https://www.restapitutorial.com/lessons/httpmethods.html
