@@ -1,7 +1,10 @@
-package com.stepstone.training.arena;
+package com.stepstone.training.arena.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.stepstone.training.arena.model.AttackResult;
+import com.stepstone.training.arena.model.Creature;
+import com.stepstone.training.arena.model.Fighters;
 
 import java.util.*;
 import java.util.concurrent.*;

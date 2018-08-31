@@ -1,9 +1,9 @@
 package com.stepstone.training.excercise;
 
-import com.stepstone.training.arena.Creature;
-import com.stepstone.training.arena.CreatureType;
-import com.stepstone.training.arena.CreaturesFactory;
-import com.stepstone.training.arena.ProtectionItem;
+import com.stepstone.training.arena.model.Creature;
+import com.stepstone.training.arena.model.CreatureType;
+import com.stepstone.training.arena.service.CreaturesFactory;
+import com.stepstone.training.arena.model.ProtectionItem;
 import org.junit.Test;
 
 import java.util.ArrayList;

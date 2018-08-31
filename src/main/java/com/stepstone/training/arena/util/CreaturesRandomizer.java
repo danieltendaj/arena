@@ -1,12 +1,10 @@
-package com.stepstone.training.arena;
+package com.stepstone.training.arena.util;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-class CreaturesRandomizer {
+public class CreaturesRandomizer {
 
-    static int randomCreatureValue(int min, int max) {
+    public static int randomCreatureValue(int min, int max) {
         Random randomGenerator = new Random();
 
         int i = 0;

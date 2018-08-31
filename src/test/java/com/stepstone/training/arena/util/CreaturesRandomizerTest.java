@@ -1,5 +1,6 @@
-package com.stepstone.training.arena;
+package com.stepstone.training.arena.util;
 
+import com.stepstone.training.arena.util.CreaturesRandomizer;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

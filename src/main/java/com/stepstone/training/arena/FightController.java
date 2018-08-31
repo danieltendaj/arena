@@ -1,6 +1,11 @@
 package com.stepstone.training.arena;
 
 import com.google.gson.Gson;
+import com.stepstone.training.arena.model.Creature;
+import com.stepstone.training.arena.model.CreatureType;
+import com.stepstone.training.arena.model.ProtectionItem;
+import com.stepstone.training.arena.service.CreaturesFactory;
+import com.stepstone.training.arena.service.FightService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -70,6 +75,25 @@ public class FightController {
         }
 
     }
+
+    @PutMapping("/fighter/{name}")
+    public static String amendFighter(String type, @PathVariable String name, int strength, int dexterity, int initiative, int endurance, int lifepoints, String protection) {
+
+        Map<ProtectionItem, Integer> map = new HashMap<>();
+        map.put(ProtectionItem.valueOf(protection), 1);
+
+        Creature creature = creaturesFactory.generate(CreatureType.valueOf(type), name, strength, dexterity, initiative, endurance, lifepoints, map);
+
+        if (list.contains(creature)){
+            list.set(list.indexOf(creature), creature);
+            return name + " parameters were changed";
+        }
+        else {
+            return name + " was not found";
+        }
+
+    }
+
 
     @GetMapping("/tournament")
     public static String runTournament(){

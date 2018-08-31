@@ -1,5 +1,9 @@
-package com.stepstone.training.arena;
+package com.stepstone.training.arena.service;
 
+import com.stepstone.training.arena.model.Creature;
+import com.stepstone.training.arena.model.CreatureType;
+import com.stepstone.training.arena.model.ProtectionItem;
+import com.stepstone.training.arena.util.CreaturesRandomizer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
