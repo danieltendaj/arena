@@ -1,8 +1,7 @@
 package com.stepstone.training.arena;
 
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.google.gson.Gson;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,6 +28,45 @@ public class FightController {
         else {
             list.add(creature);
             return name + " succesfully created";
+        }
+
+    }
+
+    @DeleteMapping("/fighter/{name}")
+    public static String removeFighter(@PathVariable String name) {
+
+        Map<ProtectionItem, Integer> map = new HashMap<>();
+        map.put(ProtectionItem.valueOf("HELMET"), 1);
+
+        Creature creature = creaturesFactory.generate(CreatureType.valueOf("ELF"), name, 1, 1, 1, 1, 1, map);
+
+        if (list.contains(creature)){
+            if (list.remove(creature)) {
+                return name + " is no longer in the tournament";
+            }
+            else {
+                return "Removing " + name + " from the tournament failed";
+            }
+        }
+        else {
+            return name + " was not found";
+        }
+
+    }
+
+    @GetMapping("/fighter/{name}")
+    public static String getFighter(@PathVariable String name) {
+
+        Map<ProtectionItem, Integer> map = new HashMap<>();
+        map.put(ProtectionItem.valueOf("HELMET"), 1);
+
+        Creature creature = creaturesFactory.generate(CreatureType.valueOf("ELF"), name, 1, 1, 1, 1, 1, map);
+
+        if (list.contains(creature)){
+            return list.get(list.indexOf(creature)).toString();
+        }
+        else {
+            return name + " was not found";
         }
 
     }
@@ -65,6 +103,14 @@ public class FightController {
             }
         }
         return protections;
+    }
+
+    @GetMapping("/fighters")
+    public static String getFighters(){
+
+        Gson gson = new Gson();
+        return gson.toJson(list);
+
     }
 
 }

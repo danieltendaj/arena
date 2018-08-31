@@ -1,6 +1,7 @@
 package com.stepstone.training.arena;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.*;
 import java.util.concurrent.*;
@@ -128,7 +129,7 @@ public class FightService {
         System.out.println("Sum of figths: " + fightersList.size());
         System.out.println("Sum of points: " + sumPoints);
 
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().disableHtmlEscaping().create();
         return gson.toJson(tournamentSortedResults);
 
     }
