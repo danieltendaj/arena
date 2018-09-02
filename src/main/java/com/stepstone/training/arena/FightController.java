@@ -77,8 +77,8 @@ public class FightController {
     }
 
     @PutMapping("/fighter/{name}")
-    public static String amendFighter(String type, @PathVariable String name, int strength, int dexterity, int initiative, int endurance, int lifepoints, String protection) {
-
+    public static String amendFighter(String type, int strength, int dexterity, int initiative, int endurance, int lifepoints, String protection, @PathVariable String name) {
+/*
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.valueOf(protection), 1);
 
@@ -91,7 +91,8 @@ public class FightController {
         else {
             return name + " was not found";
         }
-
+*/
+return "";
     }
 
 

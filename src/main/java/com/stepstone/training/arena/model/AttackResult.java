@@ -1,4 +1,4 @@
-package com.stepstone.training.arena;
+package com.stepstone.training.arena.model;
 
 public class AttackResult {
 
