@@ -77,8 +77,8 @@ public class FightController {
     }
 
     @PutMapping("/fighter/{name}")
-    public static String amendFighter(String type, int strength, int dexterity, int initiative, int endurance, int lifepoints, String protection, @PathVariable String name) {
-/*
+    public static String amendFighter(@PathVariable String name, String type, Integer strength, Integer dexterity, Integer initiative, Integer endurance, Integer lifepoints, String protection) {
+
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.valueOf(protection), 1);
 
@@ -91,12 +91,23 @@ public class FightController {
         else {
             return name + " was not found";
         }
-*/
-return "";
     }
 
+    /*
+    @PostMapping("/tournament")
+    public static String createTournament(int capacity, int points){
+        //Creating New tournament
+
+    }
 
     @GetMapping("/tournament")
+    public static String runTournament(){
+        //Tournament results
+
+    }
+    */
+
+    @PostMapping("/start")
     public static String runTournament(){
         FightService fightService = new FightService();
         return fightService.tournament(list);
