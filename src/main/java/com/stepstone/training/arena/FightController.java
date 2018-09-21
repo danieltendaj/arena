@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.stream.Collectors.toList;
+
 @RestController
 public class FightController {
 
@@ -113,39 +115,30 @@ public class FightController {
         return fightService.tournament(list);
     }
 
+    @CrossOrigin
     @GetMapping("/species")
     public static String getCreatureTypes(){
 
-        String species = "";
-        int counter = CreatureType.values().length;
-        for (int i = 0; i<counter; i++){
-            species = species.concat(CreatureType.values()[i].toString());
-            if (i < counter - 1) {
-                species = species.concat(", ");
-            }
-        }
-        return species;
+        Gson gson = new Gson();
+        return gson.toJson(CreatureType.values());
+
     }
 
+    @CrossOrigin
     @GetMapping("/protections")
     public static String getProtectionItems(){
 
-        String protections = "";
-        int counter = ProtectionItem.values().length;
-        for (int i = 0; i<counter; i++){
-            protections = protections.concat(ProtectionItem.values()[i].toString());
-            if (i < counter - 1) {
-                protections = protections.concat(", ");
-            }
-        }
-        return protections;
+        Gson gson = new Gson();
+        return gson.toJson(ProtectionItem.values());
+
     }
 
+    @CrossOrigin
     @GetMapping("/fighters")
     public static String getFighters(){
 
         Gson gson = new Gson();
-        return gson.toJson(list);
+        return gson.toJson(list.stream().map(Creature::getName).collect(toList()));
 
     }
 
