@@ -117,6 +117,11 @@ public class FightService {
             System.out.println("Thread interrupted");
         }
 
+        return "Tournament started";
+
+    }
+
+    public String results() {
         Map<Creature, Integer> tournamentSortedResults = tournamentResults.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
@@ -129,12 +134,8 @@ public class FightService {
             System.out.println("Creature: " + entry.getKey().getName() + ", Points: " + entry.getValue());
         }
 
-        System.out.println("Sum of figths: " + fightersList.size());
-        System.out.println("Sum of points: " + sumPoints);
-
         Gson gson = new GsonBuilder().disableHtmlEscaping().create();
         return gson.toJson(tournamentSortedResults);
-
     }
 
 }

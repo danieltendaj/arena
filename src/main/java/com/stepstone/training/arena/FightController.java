@@ -20,6 +20,7 @@ public class FightController {
 
     static CreaturesFactory creaturesFactory = new CreaturesFactory();;
     static List<Creature> list = new ArrayList<>();
+    static FightService fightService = new FightService();
 
     @PostMapping("/fighter")
     public static String addFighter(String type, String name, int strength, int dexterity, int initiative, int endurance, int lifepoints, String protection) {
@@ -101,17 +102,16 @@ public class FightController {
         //Creating New tournament
 
     }
+    */
 
     @GetMapping("/tournament")
-    public static String runTournament(){
-        //Tournament results
-
+    public static String getTournament(){
+        return fightService.results();
     }
-    */
+
 
     @PostMapping("/start")
     public static String runTournament(){
-        FightService fightService = new FightService();
         return fightService.tournament(list);
     }
 
