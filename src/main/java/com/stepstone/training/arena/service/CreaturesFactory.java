@@ -2,26 +2,22 @@ package com.stepstone.training.arena.service;
 
 import com.stepstone.training.arena.model.*;
 import com.stepstone.training.arena.util.CreaturesRandomizer;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Service
 public class CreaturesFactory {
 
     public Creature generate(CreatureType type, String name, int strength, int dexterity, int initiative, int endurance, int lifepoints, Map<ProtectionItem, Integer> protection) {
 
+        Creature.CreatureBuilder creatureBuilder = null;
+
         switch (type) {
             case ELF:
-                Creature.CreatureBuilder elfBuilder = Elf.builder();
-                elfBuilder.setName(name);
-                elfBuilder.setStrength(strength);
-                elfBuilder.setDexterity(dexterity);
-                elfBuilder.setInitiative(initiative);
-                elfBuilder.setEndurance(endurance);
-                elfBuilder.setLifePoints(lifepoints);
-                elfBuilder.setInitialLifePoints(lifepoints);
-                elfBuilder.setMapProtection(protection);
-                elfBuilder.setType(CreatureType.ELF);
-                return elfBuilder.build();
+                creatureBuilder = Elf.builder();
+                creatureBuilder.setType(CreatureType.ELF);
+                break;
             case ORC:
                 Creature.CreatureBuilder orcBuilder = Orc.builder();
                 orcBuilder.setName(name);
@@ -72,18 +68,20 @@ public class CreaturesFactory {
                 return trollBuilder.build();
             case HALFLING:
                 Creature.CreatureBuilder halflingBuilder = Halfling.builder();
-                halflingBuilder.setName(name);
-                halflingBuilder.setStrength(strength);
-                halflingBuilder.setDexterity(dexterity);
-                halflingBuilder.setInitiative(initiative);
-                halflingBuilder.setEndurance(endurance);
-                halflingBuilder.setLifePoints(lifepoints);
-                halflingBuilder.setInitialLifePoints(lifepoints);
-                halflingBuilder.setMapProtection(protection);
                 halflingBuilder.setType(CreatureType.HALFLING);
                 return halflingBuilder.build();
+
+
         }
-        return null;
+        creatureBuilder.setName(name);
+        creatureBuilder.setStrength(strength);
+        creatureBuilder.setDexterity(dexterity);
+        creatureBuilder.setInitiative(initiative);
+        creatureBuilder.setEndurance(endurance);
+        creatureBuilder.setLifePoints(lifepoints);
+        creatureBuilder.setInitialLifePoints(lifepoints);
+        creatureBuilder.setMapProtection(protection);
+        return creatureBuilder.build();
     }
 
     CreatureType randomCreatureType() {
@@ -92,24 +90,24 @@ public class CreaturesFactory {
         return CreatureType.values()[randomGenerator.nextInt(creatureTypeNumber)];
     }
 
-    String randomName(){
+    String randomName() {
         final String LETTERS = "abcdefghijklmnopqrstuvwxyz";
 
         int length = CreaturesRandomizer.randomCreatureValue(3, 10);
 
         char[] name = new char[length];
 
-        for (int i = 0; i < length; i++){
+        for (int i = 0; i < length; i++) {
             name[i] = LETTERS.charAt(CreaturesRandomizer.randomCreatureValue(1, LETTERS.length()) - 1);
         }
 
         return String.valueOf(name);
     }
 
-    Map<ProtectionItem, Integer> randomProtectionItem(){
+    Map<ProtectionItem, Integer> randomProtectionItem() {
         Map<ProtectionItem, Integer> map = new HashMap<>();
         int numberArmours;
-        for (ProtectionItem protectionItem:ProtectionItem.values()) {
+        for (ProtectionItem protectionItem : ProtectionItem.values()) {
             numberArmours = CreaturesRandomizer.randomCreatureValue(0, 2);
             map.put(protectionItem, numberArmours);
         }

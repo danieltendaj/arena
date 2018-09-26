@@ -1,4 +1,4 @@
-package com.stepstone.training.arena;
+package com.stepstone.training.arena.service;
 
 import com.google.gson.Gson;
 import com.stepstone.training.arena.model.Creature;
@@ -6,6 +6,7 @@ import com.stepstone.training.arena.model.CreatureType;
 import com.stepstone.training.arena.model.ProtectionItem;
 import com.stepstone.training.arena.service.CreaturesFactory;
 import com.stepstone.training.arena.service.FightService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -18,12 +19,16 @@ import static java.util.stream.Collectors.toList;
 @RestController
 public class FightController {
 
-    static CreaturesFactory creaturesFactory = new CreaturesFactory();;
-    static List<Creature> list = new ArrayList<>();
-    static FightService fightService = new FightService();
+    @Autowired
+    CreaturesFactory creaturesFactory;
+
+    @Autowired
+    FightService fightService;
+
+    List<Creature> list = new ArrayList<>();
 
     @PostMapping("/fighter")
-    public static String addFighter(String type, String name, int strength, int dexterity, int initiative, int endurance, int lifepoints, String protection) {
+    public String addFighter(String type, String name, int strength, int dexterity, int initiative, int endurance, int lifepoints, String protection) {
 
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.valueOf(protection), 1);
@@ -41,7 +46,7 @@ public class FightController {
     }
 
     @DeleteMapping("/fighter/{name}")
-    public static String removeFighter(@PathVariable String name) {
+    public String removeFighter(@PathVariable String name) {
 
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.valueOf("HELMET"), 1);
@@ -63,7 +68,7 @@ public class FightController {
     }
 
     @GetMapping("/fighter/{name}")
-    public static String getFighter(@PathVariable String name) {
+    public String getFighter(@PathVariable String name) {
 
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.valueOf("HELMET"), 1);
@@ -80,7 +85,7 @@ public class FightController {
     }
 
     @PutMapping("/fighter/{name}")
-    public static String amendFighter(@PathVariable String name, String type, Integer strength, Integer dexterity, Integer initiative, Integer endurance, Integer lifepoints, String protection) {
+    public String amendFighter(@PathVariable String name, String type, Integer strength, Integer dexterity, Integer initiative, Integer endurance, Integer lifepoints, String protection) {
 
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.valueOf(protection), 1);
@@ -105,19 +110,19 @@ public class FightController {
     */
 
     @GetMapping("/tournament")
-    public static String getTournament(){
+    public String getTournament(){
         return fightService.results();
     }
 
 
     @PostMapping("/start")
-    public static String runTournament(){
+    public String runTournament(){
         return fightService.tournament(list);
     }
 
     @CrossOrigin
     @GetMapping("/species")
-    public static String getCreatureTypes(){
+    public String getCreatureTypes(){
 
         Gson gson = new Gson();
         return gson.toJson(CreatureType.values());
@@ -126,7 +131,7 @@ public class FightController {
 
     @CrossOrigin
     @GetMapping("/protections")
-    public static String getProtectionItems(){
+    public String getProtectionItems(){
 
         Gson gson = new Gson();
         return gson.toJson(ProtectionItem.values());
@@ -135,7 +140,7 @@ public class FightController {
 
     @CrossOrigin
     @GetMapping("/fighters")
-    public static String getFighters(){
+    public String getFighters(){
 
         Gson gson = new Gson();
         return gson.toJson(list.stream().map(Creature::getName).collect(toList()));

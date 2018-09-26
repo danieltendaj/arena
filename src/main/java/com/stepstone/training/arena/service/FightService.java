@@ -5,11 +5,14 @@ import com.google.gson.GsonBuilder;
 import com.stepstone.training.arena.model.AttackResult;
 import com.stepstone.training.arena.model.Creature;
 import com.stepstone.training.arena.model.Fighters;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
+@Service
 public class FightService {
 
     Map<Creature, Integer> tournamentResults = new HashMap<>();
