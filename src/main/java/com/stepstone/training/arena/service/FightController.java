@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.stepstone.training.arena.model.Creature;
 import com.stepstone.training.arena.model.CreatureType;
 import com.stepstone.training.arena.model.ProtectionItem;
+import com.stepstone.training.arena.model.Tournament;
 import com.stepstone.training.arena.service.CreaturesFactory;
 import com.stepstone.training.arena.service.FightService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,26 @@ public class FightController {
     @Autowired
     FightService fightService;
 
+    Tournament tournament;
+
     List<Creature> list = new ArrayList<>();
+
+    private int capacity = 0;
 
     @PostMapping("/fighter")
     public String addFighter(String type, String name, int strength, int dexterity, int initiative, int endurance, int lifepoints, String protection) {
+
+        if (tournament == null){
+            return "There is no tournament yet";
+        }
+
+        if (!verifyCapacity()){
+            return "Too many fighters. Maximum capacity is " + tournament.getCapacity();
+        }
+
+        if (!verifyPoints(strength, dexterity, initiative, endurance, lifepoints)){
+            return "Too many points. Maximum allowed is " + tournament.getPoints();
+        }
 
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.valueOf(protection), 1);
@@ -40,6 +57,7 @@ public class FightController {
         }
         else {
             list.add(creature);
+            capacity++;
             return name + " succesfully created";
         }
 
@@ -55,6 +73,7 @@ public class FightController {
 
         if (list.contains(creature)){
             if (list.remove(creature)) {
+                capacity--;
                 return name + " is no longer in the tournament";
             }
             else {
@@ -101,13 +120,14 @@ public class FightController {
         }
     }
 
-    /*
     @PostMapping("/tournament")
-    public static String createTournament(int capacity, int points){
-        //Creating New tournament
+    public String createTournament(int capacity, int points){
 
+        tournament = Tournament.getInstance("Tournament");
+        tournament.setCapacity(capacity);
+        tournament.setPoints(points);
+        return "Tournament created";
     }
-    */
 
     @GetMapping("/tournament")
     public String getTournament(){
@@ -145,6 +165,22 @@ public class FightController {
         Gson gson = new Gson();
         return gson.toJson(list.stream().map(Creature::getName).collect(toList()));
 
+    }
+
+    private boolean verifyPoints(int strength, int dexterity, int initiative, int endurance, int lifepoints){
+
+        if (strength + dexterity + initiative + endurance + lifepoints > tournament.getPoints())
+            return false;
+        else
+            return true;
+    }
+
+    private boolean verifyCapacity(){
+
+        if (capacity >= tournament.getCapacity())
+            return false;
+        else
+            return true;
     }
 
 }

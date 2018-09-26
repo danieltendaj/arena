@@ -19,24 +19,24 @@ public class CreaturesFactory {
                 creatureBuilder.setType(CreatureType.ELF);
                 break;
             case ORC:
-                Creature.CreatureBuilder orcBuilder = Orc.builder();
-                orcBuilder.setType(CreatureType.ORC);
+                creatureBuilder = Orc.builder();
+                creatureBuilder.setType(CreatureType.ORC);
                 break;
             case DWARF:
-                Creature.CreatureBuilder dwarfBuilder = Dwarf.builder();
-                dwarfBuilder.setType(CreatureType.DWARF);
+                creatureBuilder = Dwarf.builder();
+                creatureBuilder.setType(CreatureType.DWARF);
                 break;
             case HUMAN:
-                Creature.CreatureBuilder humanBuilder = Human.builder();
-                humanBuilder.setType(CreatureType.HUMAN);
+                creatureBuilder = Human.builder();
+                creatureBuilder.setType(CreatureType.HUMAN);
                 break;
             case TROLL:
-                Creature.CreatureBuilder trollBuilder = Troll.builder();
-                trollBuilder.setType(CreatureType.TROLL);
+                creatureBuilder = Troll.builder();
+                creatureBuilder.setType(CreatureType.TROLL);
                 break;
             case HALFLING:
-                Creature.CreatureBuilder halflingBuilder = Halfling.builder();
-                halflingBuilder.setType(CreatureType.HALFLING);
+                creatureBuilder = Halfling.builder();
+                creatureBuilder.setType(CreatureType.HALFLING);
                 break;
         }
         creatureBuilder.setName(name);
