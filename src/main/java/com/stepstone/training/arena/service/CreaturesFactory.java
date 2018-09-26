@@ -20,58 +20,24 @@ public class CreaturesFactory {
                 break;
             case ORC:
                 Creature.CreatureBuilder orcBuilder = Orc.builder();
-                orcBuilder.setName(name);
-                orcBuilder.setStrength(strength);
-                orcBuilder.setDexterity(dexterity);
-                orcBuilder.setInitiative(initiative);
-                orcBuilder.setEndurance(endurance);
-                orcBuilder.setLifePoints(lifepoints);
-                orcBuilder.setInitialLifePoints(lifepoints);
-                orcBuilder.setMapProtection(protection);
                 orcBuilder.setType(CreatureType.ORC);
-                return orcBuilder.build();
+                break;
             case DWARF:
                 Creature.CreatureBuilder dwarfBuilder = Dwarf.builder();
-                dwarfBuilder.setName(name);
-                dwarfBuilder.setStrength(strength);
-                dwarfBuilder.setDexterity(dexterity);
-                dwarfBuilder.setInitiative(initiative);
-                dwarfBuilder.setEndurance(endurance);
-                dwarfBuilder.setLifePoints(lifepoints);
-                dwarfBuilder.setInitialLifePoints(lifepoints);
-                dwarfBuilder.setMapProtection(protection);
                 dwarfBuilder.setType(CreatureType.DWARF);
-                return dwarfBuilder.build();
+                break;
             case HUMAN:
                 Creature.CreatureBuilder humanBuilder = Human.builder();
-                humanBuilder.setName(name);
-                humanBuilder.setStrength(strength);
-                humanBuilder.setDexterity(dexterity);
-                humanBuilder.setInitiative(initiative);
-                humanBuilder.setEndurance(endurance);
-                humanBuilder.setLifePoints(lifepoints);
-                humanBuilder.setInitialLifePoints(lifepoints);
-                humanBuilder.setMapProtection(protection);
                 humanBuilder.setType(CreatureType.HUMAN);
-                return humanBuilder.build();
+                break;
             case TROLL:
                 Creature.CreatureBuilder trollBuilder = Troll.builder();
-                trollBuilder.setName(name);
-                trollBuilder.setStrength(strength);
-                trollBuilder.setDexterity(dexterity);
-                trollBuilder.setInitiative(initiative);
-                trollBuilder.setEndurance(endurance);
-                trollBuilder.setLifePoints(lifepoints);
-                trollBuilder.setInitialLifePoints(lifepoints);
-                trollBuilder.setMapProtection(protection);
                 trollBuilder.setType(CreatureType.TROLL);
-                return trollBuilder.build();
+                break;
             case HALFLING:
                 Creature.CreatureBuilder halflingBuilder = Halfling.builder();
                 halflingBuilder.setType(CreatureType.HALFLING);
-                return halflingBuilder.build();
-
-
+                break;
         }
         creatureBuilder.setName(name);
         creatureBuilder.setStrength(strength);
