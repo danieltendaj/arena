@@ -1,6 +1,7 @@
 package com.stepstone.training.arena.service;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.stepstone.training.arena.model.*;
 import com.stepstone.training.arena.service.CreaturesFactory;
 import com.stepstone.training.arena.service.FightService;
@@ -92,7 +93,11 @@ public class FightController {
         Creature creature = creaturesFactory.generate(CreatureType.valueOf("ELF"), name, 1, 1, 1, 1, 1, map);
 
         if (list.contains(creature)){
-            return list.get(list.indexOf(creature)).toString();
+            Gson gson = new GsonBuilder().disableHtmlEscaping()
+                    .enableComplexMapKeySerialization()
+                    .setPrettyPrinting()
+                    .create();
+            return gson.toJson(list.get(list.indexOf(creature)));
         }
         else {
             return name + " was not found";
