@@ -8,5 +8,6 @@ public class Tournament {
     private final String name;
     private int capacity;
     private int points;
+    private TournamentState state;
 
 }

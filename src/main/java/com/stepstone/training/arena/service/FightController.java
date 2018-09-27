@@ -1,10 +1,7 @@
 package com.stepstone.training.arena.service;
 
 import com.google.gson.Gson;
-import com.stepstone.training.arena.model.Creature;
-import com.stepstone.training.arena.model.CreatureType;
-import com.stepstone.training.arena.model.ProtectionItem;
-import com.stepstone.training.arena.model.Tournament;
+import com.stepstone.training.arena.model.*;
 import com.stepstone.training.arena.service.CreaturesFactory;
 import com.stepstone.training.arena.service.FightService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -126,18 +123,29 @@ public class FightController {
         tournament = Tournament.getInstance("Tournament");
         tournament.setCapacity(capacity);
         tournament.setPoints(points);
+        tournament.setState(TournamentState.CREATED);
         return "Tournament created";
     }
 
     @GetMapping("/tournament")
     public String getTournament(){
+        if (tournament == null)
+            return "There is no tournament yet";
+        else
+            return tournament.getState().toString();
+    }
+
+    @GetMapping("/results")
+    public String getResults(){
         return fightService.results();
     }
 
-
     @PostMapping("/start")
     public String runTournament(){
-        return fightService.tournament(list);
+        tournament.setState(TournamentState.RUNNING);
+        String returnString = fightService.tournament(list);
+        tournament.setState(TournamentState.COMPLETED);
+        return returnString;
     }
 
     @CrossOrigin
