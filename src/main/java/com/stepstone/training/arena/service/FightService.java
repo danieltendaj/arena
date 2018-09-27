@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.concurrent.*;
 
+import static java.util.Comparator.comparing;
+import static java.util.Map.Entry.comparingByValue;
+
 @Service
 public class FightService {
 
@@ -127,7 +130,8 @@ public class FightService {
         for (Map.Entry<Creature, Integer[]> creatureEntry : tournamentResults.entrySet()) {
             toSort.add(creatureEntry);
         }
-        toSort.sort(Map.Entry.<Creature, Integer[]>comparingByValue(Comparator.comparing(v -> v[0])).reversed());
+        toSort.sort(Map.Entry.<Creature, Integer[]>comparingByValue(comparing(v -> v[0]))
+        .thenComparing(v -> v.getValue()[1]).reversed());
         Map<String, Integer[]> tournamentSortedResults = new LinkedHashMap<>();
         for (Map.Entry<Creature, Integer[]> creatureEntry : toSort) {
             tournamentSortedResults.put(creatureEntry.getKey().getName(), creatureEntry.getValue());
