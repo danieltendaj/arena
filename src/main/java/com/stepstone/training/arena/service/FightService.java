@@ -5,17 +5,15 @@ import com.google.gson.GsonBuilder;
 import com.stepstone.training.arena.model.AttackResult;
 import com.stepstone.training.arena.model.Creature;
 import com.stepstone.training.arena.model.Fighters;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.concurrent.*;
-import java.util.stream.Collectors;
 
 @Service
 public class FightService {
 
-    Map<Creature, Integer> tournamentResults = new HashMap<>();
+    Map<Creature, Integer[]> tournamentResults = new HashMap<>();
 
     private void fight(Creature creatureFirst, Creature creatureSecond){
 
@@ -43,18 +41,18 @@ public class FightService {
 
         if (!creatureFirst.isAlive()){
             System.out.println(creatureSecond.getName() + " won. Remained life points: " + creatureSecond.getLifePoints());
-            tournamentResults.put(creatureSecond, tournamentResults.get(creatureSecond) + 2);
+            tournamentResults.put(creatureSecond, new Integer[]{tournamentResults.get(creatureSecond)[0] + 2, creatureSecond.getLifePoints()});
 
         }
         else{
             if (!creatureSecond.isAlive()) {
                 System.out.println(creatureFirst.getName() + " won. Remained life points: " + creatureFirst.getLifePoints());
-                tournamentResults.put(creatureFirst, tournamentResults.get(creatureFirst) + 2);
+                tournamentResults.put(creatureFirst, new Integer[]{tournamentResults.get(creatureFirst)[0] + 2, creatureFirst.getLifePoints()});
             }
             else {
                 System.out.println("Game ended in a draw. Remained life points: " + creatureFirst.getName() + ": " + creatureFirst.getLifePoints() + ", " + creatureSecond.getName() + ": " + creatureSecond.getLifePoints());
-                tournamentResults.put(creatureFirst, tournamentResults.get(creatureFirst) + 1);
-                tournamentResults.put(creatureSecond, tournamentResults.get(creatureSecond) + 1);
+                tournamentResults.put(creatureFirst, new Integer[]{tournamentResults.get(creatureFirst)[0] + 1, creatureFirst.getLifePoints()});
+                tournamentResults.put(creatureSecond, new Integer[]{tournamentResults.get(creatureSecond)[0] + 1, creatureSecond.getLifePoints()});
             }
         }
 
@@ -98,7 +96,7 @@ public class FightService {
         System.out.println("Creatures in the tournament:");
         for (Creature creature:creaturesList){
             System.out.println(creature.getName());
-            tournamentResults.put(creature, 0);
+            tournamentResults.put(creature, new Integer[]{0, 0});
         }
         System.out.println();
 
@@ -125,19 +123,29 @@ public class FightService {
     }
 
     public String results() {
-        Map<Creature, Integer> tournamentSortedResults = tournamentResults.entrySet().stream()
-                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+        List<Map.Entry<Creature, Integer[]>> toSort = new ArrayList<>();
+        for (Map.Entry<Creature, Integer[]> creatureEntry : tournamentResults.entrySet()) {
+            toSort.add(creatureEntry);
+        }
+        toSort.sort(Map.Entry.<Creature, Integer[]>comparingByValue(Comparator.comparing(v -> v[0])).reversed());
+        Map<String, Integer[]> tournamentSortedResults = new LinkedHashMap<>();
+        for (Map.Entry<Creature, Integer[]> creatureEntry : toSort) {
+            tournamentSortedResults.put(creatureEntry.getKey().getName(), creatureEntry.getValue());
+        }
+        //                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
 
         System.out.println();
         System.out.println("Tournament classification:");
         Integer sumPoints = new Integer(0);
-        for (Map.Entry<Creature, Integer> entry : tournamentSortedResults.entrySet()){
-            sumPoints = sumPoints + entry.getValue();
-            System.out.println("Creature: " + entry.getKey().getName() + ", Points: " + entry.getValue());
+        for (Map.Entry<String, Integer[]> entry : tournamentSortedResults.entrySet()){
+            sumPoints = sumPoints + entry.getValue()[0];
+            System.out.println("Creature: " + entry.getKey() + ", Points: " + entry.getValue()[0] + ", Remained life points: " + entry.getValue()[1]);
         }
 
-        Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+        Gson gson = new GsonBuilder().disableHtmlEscaping()
+                .enableComplexMapKeySerialization()
+                .setPrettyPrinting()
+                .create();
         return gson.toJson(tournamentSortedResults);
     }
 
