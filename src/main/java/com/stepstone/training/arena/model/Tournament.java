@@ -1,7 +1,6 @@
 package com.stepstone.training.arena.model;
 
 import lombok.Data;
-import lombok.Value;
 
 @Data(staticConstructor="getInstance")
 public class Tournament {
