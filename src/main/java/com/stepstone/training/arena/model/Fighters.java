@@ -1,6 +1,6 @@
 package com.stepstone.training.arena.model;
 
-import com.stepstone.training.arena.model.Creature;
+import com.stepstone.training.arena.model.creature.Creature;
 
 public class Fighters {
     private Creature firstFighter;

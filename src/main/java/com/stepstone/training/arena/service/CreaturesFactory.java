@@ -1,6 +1,7 @@
 package com.stepstone.training.arena.service;
 
 import com.stepstone.training.arena.model.*;
+import com.stepstone.training.arena.model.creature.*;
 import com.stepstone.training.arena.util.CreaturesRandomizer;
 import org.springframework.stereotype.Service;
 

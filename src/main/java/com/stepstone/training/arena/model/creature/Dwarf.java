@@ -1,4 +1,4 @@
-package com.stepstone.training.arena.model;
+package com.stepstone.training.arena.model.creature;
 
 public class Dwarf extends Creature {
 

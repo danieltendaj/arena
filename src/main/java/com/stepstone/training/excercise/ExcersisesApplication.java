@@ -1,6 +1,6 @@
 package com.stepstone.training.excercise;
 
-import com.stepstone.training.arena.model.Creature;
+import com.stepstone.training.arena.model.creature.Creature;
 import com.stepstone.training.arena.service.CreaturesFactory;
 
 import java.util.List;

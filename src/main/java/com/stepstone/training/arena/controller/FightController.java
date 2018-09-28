@@ -1,8 +1,10 @@
-package com.stepstone.training.arena.service;
+package com.stepstone.training.arena.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.stepstone.training.arena.model.*;
+import com.stepstone.training.arena.model.creature.Creature;
+import com.stepstone.training.arena.model.creature.CreatureType;
 import com.stepstone.training.arena.service.CreaturesFactory;
 import com.stepstone.training.arena.service.FightService;
 import org.springframework.beans.factory.annotation.Autowired;

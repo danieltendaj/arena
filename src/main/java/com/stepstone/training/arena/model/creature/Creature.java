@@ -1,5 +1,9 @@
-package com.stepstone.training.arena.model;
+package com.stepstone.training.arena.model.creature;
 
+import com.stepstone.training.arena.model.AttackResult;
+import com.stepstone.training.arena.model.BodyPart;
+import com.stepstone.training.arena.model.Fightable;
+import com.stepstone.training.arena.model.ProtectionItem;
 import com.stepstone.training.arena.util.CreaturesRandomizer;
 
 import java.util.HashMap;

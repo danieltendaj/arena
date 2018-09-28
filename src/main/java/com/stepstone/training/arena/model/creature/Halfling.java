@@ -1,7 +1,4 @@
-package com.stepstone.training.arena.model;
-
-import com.stepstone.training.arena.model.Creature;
-import com.stepstone.training.arena.model.CreatureType;
+package com.stepstone.training.arena.model.creature;
 
 public class Halfling extends Creature {
 

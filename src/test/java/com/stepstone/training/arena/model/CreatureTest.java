@@ -1,5 +1,8 @@
 package com.stepstone.training.arena.model;
 
+import com.stepstone.training.arena.model.creature.Creature;
+import com.stepstone.training.arena.model.creature.CreatureType;
+import com.stepstone.training.arena.model.creature.Elf;
 import org.junit.Test;
 
 import java.util.HashMap;
