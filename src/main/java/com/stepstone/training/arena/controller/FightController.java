@@ -2,11 +2,13 @@ package com.stepstone.training.arena.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.stepstone.training.arena.data.TournamentDto;
 import com.stepstone.training.arena.model.*;
 import com.stepstone.training.arena.model.creature.Creature;
 import com.stepstone.training.arena.model.creature.CreatureType;
 import com.stepstone.training.arena.service.CreaturesFactory;
 import com.stepstone.training.arena.service.FightService;
+import com.stepstone.training.arena.service.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +28,10 @@ public class FightController {
     @Autowired
     FightService fightService;
 
-    Tournament tournament;
+    @Autowired
+    TournamentService tournamentService;
+
+    TournamentEntity tournament;
 
     List<Creature> list = new ArrayList<>();
 
@@ -127,7 +132,7 @@ public class FightController {
     @PostMapping("/tournament")
     public String createTournament(int capacity, int points){
 
-        tournament = Tournament.getInstance("Tournament");
+        tournament = TournamentDto.getInstance("TournamentEntity");
         tournament.setCapacity(capacity);
         tournament.setPoints(points);
         tournament.setState(TournamentState.CREATED);

@@ -2,10 +2,17 @@ package com.stepstone.training.arena.model;
 
 import lombok.Data;
 
-@Data(staticConstructor="getInstance")
-public class Tournament {
+import javax.persistence.*;
 
-    private final String name;
+@Entity
+@Data(staticConstructor="getInstance")
+@Table(name = "tournament")
+public class TournamentEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
     private int capacity;
     private int points;
     private TournamentState state;
