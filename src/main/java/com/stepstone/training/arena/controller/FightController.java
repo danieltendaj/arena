@@ -31,7 +31,7 @@ public class FightController {
     @Autowired
     TournamentService tournamentService;
 
-    TournamentEntity tournament;
+    TournamentDto tournament;
 
     List<Creature> list = new ArrayList<>();
 
@@ -132,10 +132,10 @@ public class FightController {
     @PostMapping("/tournament")
     public String createTournament(int capacity, int points){
 
-        tournament = TournamentDto.getInstance("TournamentEntity");
         tournament.setCapacity(capacity);
         tournament.setPoints(points);
         tournament.setState(TournamentState.CREATED);
+        TournamentDto tournamentDto = tournamentService.createTournament(tournament);
         return "Tournament created";
     }
 

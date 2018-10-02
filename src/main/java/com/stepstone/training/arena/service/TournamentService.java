@@ -5,7 +5,9 @@ import com.stepstone.training.arena.data.TournamentDto;
 import com.stepstone.training.arena.data.TournamentRepository;
 import com.stepstone.training.arena.model.TournamentEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TournamentService {
 
     @Autowired
