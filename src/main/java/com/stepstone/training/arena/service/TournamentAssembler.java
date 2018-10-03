@@ -13,7 +13,7 @@ public class TournamentAssembler {
         tournamentDto.setCapacity(tournamentEntity.getCapacity());
         tournamentDto.setPoints(tournamentEntity.getPoints());
         tournamentDto.setState(tournamentEntity.getState());
-        return null;
+        return tournamentDto;
     }
 
     public TournamentEntity toEntity(TournamentDto tournamentDto){
