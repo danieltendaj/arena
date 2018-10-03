@@ -13,8 +13,8 @@ public class TournamentEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private int capacity;
-    private int points;
+    private Integer capacity;
+    private Integer points;
     private TournamentState state;
 
 }

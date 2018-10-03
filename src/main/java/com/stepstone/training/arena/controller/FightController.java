@@ -35,7 +35,7 @@ public class FightController {
 
     List<Creature> list = new ArrayList<>();
 
-    private int capacity = 0;
+    private Integer capacity = 0;
 
     @PostMapping("/fighter")
     public String addFighter(String type, String name, int strength, int dexterity, int initiative, int endurance, int lifepoints, String protection) {
@@ -130,14 +130,14 @@ public class FightController {
     }
 
     @PostMapping("/tournament")
-    public String createTournament(int capacity, int points){
+    public String createTournament(Integer capacity, Integer points){
 
         tournament = TournamentDto.getInstance();
         tournament.setCapacity(capacity);
         tournament.setPoints(points);
         tournament.setState(TournamentState.CREATED);
-        TournamentDto tournamentDto = tournamentService.createTournament(tournament);
-        return "Tournament created";
+        tournament = tournamentService.createTournament(tournament);
+        return "Tournament created: " + tournament.getId();
     }
 
     @GetMapping("/tournament")
@@ -198,7 +198,8 @@ public class FightController {
 
     private boolean verifyCapacity(){
 
-        if (capacity >= tournament.getCapacity())
+        System.out.println(tournament.getCapacity());
+        if (capacity.compareTo(tournament.getCapacity()) < 0 )
             return false;
         else
             return true;
