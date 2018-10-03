@@ -132,6 +132,7 @@ public class FightController {
     @PostMapping("/tournament")
     public String createTournament(int capacity, int points){
 
+        tournament = TournamentDto.getInstance();
         tournament.setCapacity(capacity);
         tournament.setPoints(points);
         tournament.setState(TournamentState.CREATED);

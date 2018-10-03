@@ -7,12 +7,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class TournamentAssembler {
 
-    public TournamentDto toDto(TournamentEntity entity){
+    public TournamentDto toDto(TournamentEntity tournamentEntity){
+        TournamentDto tournamentDto = TournamentDto.getInstance();
+        tournamentDto.setId(tournamentEntity.getId());
+        tournamentDto.setCapacity(tournamentEntity.getCapacity());
+        tournamentDto.setPoints(tournamentEntity.getPoints());
+        tournamentDto.setState(tournamentEntity.getState());
         return null;
     }
 
     public TournamentEntity toEntity(TournamentDto tournamentDto){
-        return null;
+        TournamentEntity tournamentEntity = TournamentEntity.getInstance();
+        tournamentEntity.setCapacity(tournamentDto.getCapacity());
+        tournamentEntity.setPoints(tournamentDto.getPoints());
+        tournamentEntity.setState(tournamentDto.getState());
+        return tournamentEntity;
     }
 
 }

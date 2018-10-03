@@ -5,7 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Data(staticConstructor="getInstance")
+@Data (staticConstructor="getInstance")
 public class TournamentDto {
 
     private Integer id;

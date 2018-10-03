@@ -105,7 +105,7 @@ public class FightService {
 
         List<Fighters> fightersList = pairs(creaturesList);
 
-        System.out.println("TournamentEntity results:");
+        System.out.println("Tournament results:");
         Executor executor = Executors.newCachedThreadPool();
         for (Fighters fighters : fightersList) {
             Runnable fights = () -> {
@@ -121,7 +121,7 @@ public class FightService {
             System.out.println("Thread interrupted");
         }
 
-        return "TournamentEntity started";
+        return "Tournament started";
 
     }
 
@@ -139,7 +139,7 @@ public class FightService {
         //                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
 
         System.out.println();
-        System.out.println("TournamentEntity classification:");
+        System.out.println("Tournament classification:");
         Integer sumPoints = new Integer(0);
         for (Map.Entry<String, Integer[]> entry : tournamentSortedResults.entrySet()){
             sumPoints = sumPoints + entry.getValue()[0];
