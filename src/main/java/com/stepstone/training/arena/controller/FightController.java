@@ -131,17 +131,16 @@ public class FightController {
 
     @PostMapping("/tournament")
     public String createTournament(Integer capacity, Integer points){
-
         tournament = TournamentDto.getInstance();
         tournament.setCapacity(capacity);
         tournament.setPoints(points);
         tournament.setState(TournamentState.CREATED);
-        tournament = tournamentService.createTournament(tournament);
-        return "Tournament created: " + tournament.getId();
+        TournamentDto tournamentDto = tournamentService.createTournament(tournament);
+        return "Tournament created: " + tournamentDto.getId();
     }
 
-    @GetMapping("/tournament")
-    public String getTournament(){
+    @GetMapping("/tournament/{id}")
+    public String getTournament(@PathVariable Integer id){
         if (tournament == null)
             return "There is no tournament yet";
         else
@@ -198,8 +197,7 @@ public class FightController {
 
     private boolean verifyCapacity(){
 
-        System.out.println(tournament.getCapacity());
-        if (capacity.compareTo(tournament.getCapacity()) < 0 )
+        if (capacity.compareTo(tournament.getCapacity()) > 0 )
             return false;
         else
             return true;
