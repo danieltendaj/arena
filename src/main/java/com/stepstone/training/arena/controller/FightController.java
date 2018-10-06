@@ -31,24 +31,25 @@ public class FightController {
     @Autowired
     TournamentService tournamentService;
 
-    TournamentDto tournament;
+    private List<TournamentDto> tournaments = new ArrayList<>();
 
-    List<Creature> list = new ArrayList<>();
+    private Map<Integer, List<Creature>> fighters = new HashMap<>();
 
-    private Integer capacity = 0;
+    @PostMapping("/tournament/{id}/fighter")
+    public String addFighter(@PathVariable Integer id, String type, String name, Integer strength, Integer dexterity, Integer initiative, Integer endurance, Integer lifepoints, String protection) {
 
-    @PostMapping("/fighter")
-    public String addFighter(String type, String name, int strength, int dexterity, int initiative, int endurance, int lifepoints, String protection) {
-
-        if (tournament == null){
-            return "There is no tournament yet";
+        TournamentDto tournament = null;
+        try {
+            tournament = tournaments.get(id);
+        } catch (Exception e) {
+            throw new NoSuchTournamentException(id);
         }
 
-        if (!verifyCapacity()){
+        if (!verifyCapacity(id)){
             return "Too many fighters. Maximum capacity is " + tournament.getCapacity();
         }
 
-        if (!verifyPoints(strength, dexterity, initiative, endurance, lifepoints)){
+        if (!verifyPoints(id, strength, dexterity, initiative, endurance, lifepoints)){
             return "Too many points. Maximum allowed is " + tournament.getPoints();
         }
 
@@ -57,28 +58,33 @@ public class FightController {
 
         Creature creature = creaturesFactory.generate(CreatureType.valueOf(type), name, strength, dexterity, initiative, endurance, lifepoints, map);
 
-        if (list.contains(creature)){
+        if (fighters.get(id).contains(creature)){
             return name + " - there is already such creature";
         }
         else {
-            list.add(creature);
-            capacity++;
+            fighters.get(id).add(creature);
             return name + " succesfully created";
         }
 
     }
 
-    @DeleteMapping("/fighter/{name}")
-    public String removeFighter(@PathVariable String name) {
+    @DeleteMapping("/tournament/{id}/fighter/{name}")
+    public String removeFighter(@PathVariable Integer id, @PathVariable String name) {
+
+        TournamentDto tournament = null;
+        try {
+            tournament = tournaments.get(id);
+        } catch (Exception e) {
+            throw new NoSuchTournamentException(id);
+        }
 
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.valueOf("HELMET"), 1);
 
         Creature creature = creaturesFactory.generate(CreatureType.valueOf("ELF"), name, 1, 1, 1, 1, 1, map);
 
-        if (list.contains(creature)){
-            if (list.remove(creature)) {
-                capacity--;
+        if (fighters.get(id).contains(creature)){
+            if (fighters.get(id).remove(creature)) {
                 return name + " is no longer in the tournament";
             }
             else {
@@ -91,20 +97,20 @@ public class FightController {
 
     }
 
-    @GetMapping("/fighter/{name}")
-    public String getFighter(@PathVariable String name) {
+    @GetMapping("/tournament/{id}/fighter/{name}")
+    public String getFighter(@PathVariable Integer id, @PathVariable String name) {
 
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.valueOf("HELMET"), 1);
 
         Creature creature = creaturesFactory.generate(CreatureType.valueOf("ELF"), name, 1, 1, 1, 1, 1, map);
 
-        if (list.contains(creature)){
+        if (fighters.get(id).contains(creature)){
             Gson gson = new GsonBuilder().disableHtmlEscaping()
                     .enableComplexMapKeySerialization()
                     .setPrettyPrinting()
                     .create();
-            return gson.toJson(list.get(list.indexOf(creature)));
+            return gson.toJson(fighters.get(id).get(fighters.get(id).indexOf(creature)));
         }
         else {
             return name + " was not found";
@@ -112,16 +118,16 @@ public class FightController {
 
     }
 
-    @PutMapping("/fighter/{name}")
-    public String amendFighter(@PathVariable String name, String type, Integer strength, Integer dexterity, Integer initiative, Integer endurance, Integer lifepoints, String protection) {
+    @PutMapping("/tournament/{id}/fighter/{name}")
+    public String amendFighter(@PathVariable Integer id, @PathVariable String name, String type, Integer strength, Integer dexterity, Integer initiative, Integer endurance, Integer lifepoints, String protection) {
 
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.valueOf(protection), 1);
 
         Creature creature = creaturesFactory.generate(CreatureType.valueOf(type), name, strength, dexterity, initiative, endurance, lifepoints, map);
 
-        if (list.contains(creature)){
-            list.set(list.indexOf(creature), creature);
+        if (fighters.get(id).contains(creature)){
+            fighters.get(id).set(fighters.get(id).indexOf(creature), creature);
             return name + " parameters were changed";
         }
         else {
@@ -131,20 +137,41 @@ public class FightController {
 
     @PostMapping("/tournament")
     public String createTournament(Integer capacity, Integer points){
-        tournament = TournamentDto.getInstance();
+        TournamentDto tournament = TournamentDto.getInstance();
         tournament.setCapacity(capacity);
         tournament.setPoints(points);
         tournament.setState(TournamentState.CREATED);
         TournamentDto tournamentDto = tournamentService.createTournament(tournament);
+        tournaments.add(tournamentDto);
+        fighters.put(tournamentDto.getId(), null);
         return "Tournament created: " + tournamentDto.getId();
     }
 
     @GetMapping("/tournament/{id}")
     public String getTournament(@PathVariable Integer id){
-        if (tournament == null)
-            return "There is no tournament yet";
-        else
-            return tournament.getState().toString();
+
+        TournamentDto tournament;
+        TournamentDto tournamentDto = TournamentDto.getInstance();
+        tournamentDto.setId(id);
+        try {
+            tournament = tournaments.get(tournaments.indexOf(tournamentDto));
+        } catch (Exception e) {
+            throw new NoSuchTournamentException(id);
+        }
+        Gson gson = new GsonBuilder().disableHtmlEscaping()
+                .enableComplexMapKeySerialization()
+                .setPrettyPrinting()
+                .create();
+        return gson.toJson(tournament);
+
+    }
+
+    @GetMapping("/tournaments")
+    public String getTournaments(){
+
+        Gson gson = new Gson();
+        return gson.toJson(tournaments);
+
     }
 
     @GetMapping("/results")
@@ -152,12 +179,36 @@ public class FightController {
         return fightService.results();
     }
 
-    @PostMapping("/start")
-    public String runTournament(){
+    @PostMapping("/tournament/{id}/start")
+    public String runTournament(@PathVariable Integer id){
+
+        TournamentDto tournament = null;
+        try {
+            tournament = tournaments.get(id);
+        } catch (Exception e) {
+            throw new NoSuchTournamentException(id);
+        }
+
         tournament.setState(TournamentState.RUNNING);
-        String returnString = fightService.tournament(list);
+        String returnString = fightService.tournament(fighters.get(id));
         tournament.setState(TournamentState.COMPLETED);
         return returnString;
+    }
+
+    @CrossOrigin
+    @GetMapping("/tournament/{id}/fighters")
+    public String getFighters(@PathVariable Integer id){
+
+        TournamentDto tournament = null;
+        try {
+            tournament = tournaments.get(id);
+        } catch (Exception e) {
+            throw new NoSuchTournamentException(id);
+        }
+
+        Gson gson = new Gson();
+        return gson.toJson(fighters.get(id).stream().map(Creature::getName).collect(toList()));
+
     }
 
     @CrossOrigin
@@ -178,26 +229,17 @@ public class FightController {
 
     }
 
-    @CrossOrigin
-    @GetMapping("/fighters")
-    public String getFighters(){
+    private boolean verifyPoints(Integer id, Integer strength, Integer dexterity, Integer initiative, Integer endurance, Integer lifepoints){
 
-        Gson gson = new Gson();
-        return gson.toJson(list.stream().map(Creature::getName).collect(toList()));
-
-    }
-
-    private boolean verifyPoints(int strength, int dexterity, int initiative, int endurance, int lifepoints){
-
-        if (strength + dexterity + initiative + endurance + lifepoints > tournament.getPoints())
+        if (strength + dexterity + initiative + endurance + lifepoints > tournaments.get(id).getPoints())
             return false;
         else
             return true;
     }
 
-    private boolean verifyCapacity(){
+    private boolean verifyCapacity(Integer id){
 
-        if (capacity.compareTo(tournament.getCapacity()) > 0 )
+        if (fighters.get(id).size() >= tournaments.get(id).getCapacity() - 1)
             return false;
         else
             return true;
