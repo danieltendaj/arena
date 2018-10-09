@@ -3,7 +3,9 @@ package com.stepstone.training.arena.controller;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.stepstone.training.arena.data.TournamentDto;
-import com.stepstone.training.arena.model.*;
+import com.stepstone.training.arena.model.NoSuchTournamentException;
+import com.stepstone.training.arena.model.ProtectionItem;
+import com.stepstone.training.arena.model.TournamentState;
 import com.stepstone.training.arena.model.creature.Creature;
 import com.stepstone.training.arena.model.creature.CreatureType;
 import com.stepstone.training.arena.service.CreaturesFactory;
@@ -12,10 +14,7 @@ import com.stepstone.training.arena.service.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static java.util.stream.Collectors.toList;
 
@@ -31,9 +30,9 @@ public class FightController {
     @Autowired
     TournamentService tournamentService;
 
-    private List<TournamentDto> tournaments = new ArrayList<>();
+    private Map<Integer, TournamentDto> tournaments = new HashMap<>();
 
-    private Map<Integer, List<Creature>> fighters = new HashMap<>();
+    private Map<Integer, ArrayList<Creature>> fighters = new HashMap<>();
 
     @PostMapping("/tournament/{id}/fighter")
     public String addFighter(@PathVariable Integer id, String type, String name, Integer strength, Integer dexterity, Integer initiative, Integer endurance, Integer lifepoints, String protection) {
@@ -100,6 +99,13 @@ public class FightController {
     @GetMapping("/tournament/{id}/fighter/{name}")
     public String getFighter(@PathVariable Integer id, @PathVariable String name) {
 
+        TournamentDto tournament = null;
+        try {
+            tournament = tournaments.get(id);
+        } catch (Exception e) {
+            throw new NoSuchTournamentException(id);
+        }
+
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.valueOf("HELMET"), 1);
 
@@ -120,6 +126,13 @@ public class FightController {
 
     @PutMapping("/tournament/{id}/fighter/{name}")
     public String amendFighter(@PathVariable Integer id, @PathVariable String name, String type, Integer strength, Integer dexterity, Integer initiative, Integer endurance, Integer lifepoints, String protection) {
+
+        TournamentDto tournament = null;
+        try {
+            tournament = tournaments.get(id);
+        } catch (Exception e) {
+            throw new NoSuchTournamentException(id);
+        }
 
         Map<ProtectionItem, Integer> map = new HashMap<>();
         map.put(ProtectionItem.valueOf(protection), 1);
@@ -142,8 +155,8 @@ public class FightController {
         tournament.setPoints(points);
         tournament.setState(TournamentState.CREATED);
         TournamentDto tournamentDto = tournamentService.createTournament(tournament);
-        tournaments.add(tournamentDto);
-        fighters.put(tournamentDto.getId(), null);
+        tournaments.put(tournamentDto.getId(), tournamentDto);
+        fighters.put(tournamentDto.getId(), new ArrayList<Creature>());
         return "Tournament created: " + tournamentDto.getId();
     }
 
@@ -154,7 +167,7 @@ public class FightController {
         TournamentDto tournamentDto = TournamentDto.getInstance();
         tournamentDto.setId(id);
         try {
-            tournament = tournaments.get(tournaments.indexOf(tournamentDto));
+            tournament = tournaments.get(id);
         } catch (Exception e) {
             throw new NoSuchTournamentException(id);
         }
@@ -174,8 +187,14 @@ public class FightController {
 
     }
 
-    @GetMapping("/results")
-    public String getResults(){
+    @GetMapping("/tournament/{id}/results")
+    public String getResults(@PathVariable Integer id){
+        TournamentDto tournament = null;
+        try {
+            tournament = tournaments.get(id);
+        } catch (Exception e) {
+            throw new NoSuchTournamentException(id);
+        }
         return fightService.results();
     }
 
@@ -237,7 +256,7 @@ public class FightController {
             return true;
     }
 
-    private boolean verifyCapacity(Integer id){
+    private boolean verifyCapacity(int id){
 
         if (fighters.get(id).size() >= tournaments.get(id).getCapacity() - 1)
             return false;
