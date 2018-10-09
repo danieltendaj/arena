@@ -38,11 +38,18 @@ public class FightController {
     public String addFighter(@PathVariable Integer id, String type, String name, Integer strength, Integer dexterity, Integer initiative, Integer endurance, Integer lifepoints, String protection) {
 
         TournamentDto tournament = null;
+        if (!tournaments.containsKey(id)){
+            throw new NoSuchTournamentException(id);
+        }
+        else {
+            tournament = tournaments.get(id);
+        }
+/*
         try {
             tournament = tournaments.get(id);
         } catch (Exception e) {
             throw new NoSuchTournamentException(id);
-        }
+        }*/
 
         if (!verifyCapacity(id)){
             return "Too many fighters. Maximum capacity is " + tournament.getCapacity();
