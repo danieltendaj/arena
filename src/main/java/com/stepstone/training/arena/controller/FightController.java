@@ -14,6 +14,7 @@ import com.stepstone.training.arena.service.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.*;
 
 import static java.util.stream.Collectors.toList;
@@ -156,11 +157,7 @@ public class FightController {
     }
 
     @PostMapping("/tournament")
-    public String createTournament(Integer capacity, Integer points){
-        TournamentDto tournament = TournamentDto.getInstance();
-        tournament.setCapacity(capacity);
-        tournament.setPoints(points);
-        tournament.setState(TournamentState.CREATED);
+    public String createTournament(@Valid TournamentDto tournament){
         TournamentDto tournamentDto = tournamentService.createTournament(tournament);
         tournaments.put(tournamentDto.getId(), tournamentDto);
         fighters.put(tournamentDto.getId(), new ArrayList<Creature>());

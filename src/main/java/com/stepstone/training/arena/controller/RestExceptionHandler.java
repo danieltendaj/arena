@@ -8,6 +8,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.BindException;
+import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -23,6 +25,17 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         String error = "Malformed JSON request";
         ArenaApiError arenaApiError = new ArenaApiError(HttpStatus.BAD_REQUEST, error, ex.getMessage());
         return new ResponseEntity<>(arenaApiError, arenaApiError.getStatus());
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleServletRequestBindingException(ServletRequestBindingException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+
+        return super.handleServletRequestBindingException(ex, headers, HttpStatus.ALREADY_REPORTED, request);
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        return super.handleBindException(ex, headers, HttpStatus.ALREADY_REPORTED, request);
     }
 
     @ExceptionHandler(NoSuchTournamentException.class)

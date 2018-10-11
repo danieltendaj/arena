@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
+
 @EqualsAndHashCode(exclude={"capacity","points","state"})
 @NoArgsConstructor(staticName="getInstance")
 @Getter
@@ -13,8 +15,8 @@ import lombok.Setter;
 public class TournamentDto {
 
     private Integer id;
-    private Integer capacity;
-    private Integer points;
+    @NotNull private Integer capacity;
+    @NotNull private Integer points;
     private TournamentState state;
 
 }

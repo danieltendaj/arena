@@ -5,7 +5,10 @@ import com.stepstone.training.arena.model.BodyPart;
 import com.stepstone.training.arena.model.Fightable;
 import com.stepstone.training.arena.model.ProtectionItem;
 import com.stepstone.training.arena.util.CreaturesRandomizer;
+import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
