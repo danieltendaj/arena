@@ -26,7 +26,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         ArenaApiError arenaApiError = new ArenaApiError(HttpStatus.BAD_REQUEST, error, ex.getMessage());
         return new ResponseEntity<>(arenaApiError, arenaApiError.getStatus());
     }
-
+/*
     @Override
     protected ResponseEntity<Object> handleServletRequestBindingException(ServletRequestBindingException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 
@@ -37,7 +37,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         return super.handleBindException(ex, headers, HttpStatus.ALREADY_REPORTED, request);
     }
-
+*/
     @ExceptionHandler(NoSuchTournamentException.class)
     protected ResponseEntity<Object> handleNoSuchTournamentException(
             NoSuchTournamentException ex) {

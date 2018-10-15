@@ -45,12 +45,6 @@ public class FightController {
         else {
             tournament = tournaments.get(id);
         }
-/*
-        try {
-            tournament = tournaments.get(id);
-        } catch (Exception e) {
-            throw new NoSuchTournamentException(id);
-        }*/
 
         if (!verifyCapacity(id)){
             return "Too many fighters. Maximum capacity is " + tournament.getCapacity();
@@ -79,10 +73,11 @@ public class FightController {
     public String removeFighter(@PathVariable Integer id, @PathVariable String name) {
 
         TournamentDto tournament = null;
-        try {
-            tournament = tournaments.get(id);
-        } catch (Exception e) {
+        if (!tournaments.containsKey(id)){
             throw new NoSuchTournamentException(id);
+        }
+        else {
+            tournament = tournaments.get(id);
         }
 
         Map<ProtectionItem, Integer> map = new HashMap<>();
@@ -108,10 +103,11 @@ public class FightController {
     public String getFighter(@PathVariable Integer id, @PathVariable String name) {
 
         TournamentDto tournament = null;
-        try {
-            tournament = tournaments.get(id);
-        } catch (Exception e) {
+        if (!tournaments.containsKey(id)){
             throw new NoSuchTournamentException(id);
+        }
+        else {
+            tournament = tournaments.get(id);
         }
 
         Map<ProtectionItem, Integer> map = new HashMap<>();
@@ -136,10 +132,11 @@ public class FightController {
     public String amendFighter(@PathVariable Integer id, @PathVariable String name, String type, Integer strength, Integer dexterity, Integer initiative, Integer endurance, Integer lifepoints, String protection) {
 
         TournamentDto tournament = null;
-        try {
-            tournament = tournaments.get(id);
-        } catch (Exception e) {
+        if (!tournaments.containsKey(id)){
             throw new NoSuchTournamentException(id);
+        }
+        else {
+            tournament = tournaments.get(id);
         }
 
         Map<ProtectionItem, Integer> map = new HashMap<>();
@@ -170,10 +167,11 @@ public class FightController {
         TournamentDto tournament;
         TournamentDto tournamentDto = TournamentDto.getInstance();
         tournamentDto.setId(id);
-        try {
-            tournament = tournaments.get(id);
-        } catch (Exception e) {
+        if (!tournaments.containsKey(id)){
             throw new NoSuchTournamentException(id);
+        }
+        else {
+            tournament = tournaments.get(id);
         }
         Gson gson = new GsonBuilder().disableHtmlEscaping()
                 .enableComplexMapKeySerialization()
@@ -194,9 +192,7 @@ public class FightController {
     @GetMapping("/tournament/{id}/results")
     public String getResults(@PathVariable Integer id){
         TournamentDto tournament = null;
-        try {
-            tournament = tournaments.get(id);
-        } catch (Exception e) {
+        if (!tournaments.containsKey(id)){
             throw new NoSuchTournamentException(id);
         }
         return fightService.results();
@@ -206,10 +202,11 @@ public class FightController {
     public String runTournament(@PathVariable Integer id){
 
         TournamentDto tournament = null;
-        try {
-            tournament = tournaments.get(id);
-        } catch (Exception e) {
+        if (!tournaments.containsKey(id)){
             throw new NoSuchTournamentException(id);
+        }
+        else {
+            tournament = tournaments.get(id);
         }
 
         tournament.setState(TournamentState.RUNNING);
@@ -223,9 +220,7 @@ public class FightController {
     public String getFighters(@PathVariable Integer id){
 
         TournamentDto tournament = null;
-        try {
-            tournament = tournaments.get(id);
-        } catch (Exception e) {
+        if (!tournaments.containsKey(id)){
             throw new NoSuchTournamentException(id);
         }
 
