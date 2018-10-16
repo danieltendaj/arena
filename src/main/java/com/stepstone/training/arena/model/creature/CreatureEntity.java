@@ -32,6 +32,7 @@ public class CreatureEntity {
     //private Map<ProtectionItem, Integer> mapProtection;
 
     @ManyToOne
+    @JoinColumn(name="tournament_entity_id")
     private TournamentEntity tournamentEntity;
 
 }
