@@ -29,6 +29,7 @@ public class CreatureEntity {
     private Integer lifePoints;
     private Integer initialLifePoints;
     private CreatureType type;
+    private ProtectionItem protectionItem;
     //private Map<ProtectionItem, Integer> mapProtection;
 
     @ManyToOne

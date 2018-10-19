@@ -59,6 +59,8 @@ public class FightController {
 
         Creature creature = creaturesFactory.generate(CreatureType.valueOf(type), name, strength, dexterity, initiative, endurance, lifepoints, map);
 
+        tournamentService.addFighterToTournament(tournament, creature);
+
         if (fighters.get(id).contains(creature)){
             return name + " - there is already such creature";
         }
@@ -154,7 +156,7 @@ public class FightController {
     }
 
     @PostMapping("/tournament")
-    public String createTournament(@Valid TournamentDto tournament){
+    public String createTournament(@Valid @RequestBody TournamentDto tournament){
         TournamentDto tournamentDto = tournamentService.createTournament(tournament);
         tournaments.put(tournamentDto.getId(), tournamentDto);
         fighters.put(tournamentDto.getId(), new ArrayList<Creature>());

@@ -26,18 +26,14 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         ArenaApiError arenaApiError = new ArenaApiError(HttpStatus.BAD_REQUEST, error, ex.getMessage());
         return new ResponseEntity<>(arenaApiError, arenaApiError.getStatus());
     }
-/*
-    @Override
-    protected ResponseEntity<Object> handleServletRequestBindingException(ServletRequestBindingException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-
-        return super.handleServletRequestBindingException(ex, headers, HttpStatus.ALREADY_REPORTED, request);
-    }
 
     @Override
     protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        return super.handleBindException(ex, headers, HttpStatus.ALREADY_REPORTED, request);
+        String error = "Failed JSON binding";
+        ArenaApiError arenaApiError = new ArenaApiError(HttpStatus.BAD_REQUEST, error, ex.getMessage());
+        return new ResponseEntity<>(arenaApiError, arenaApiError.getStatus());
     }
-*/
+
     @ExceptionHandler(NoSuchTournamentException.class)
     protected ResponseEntity<Object> handleNoSuchTournamentException(
             NoSuchTournamentException ex) {
