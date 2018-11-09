@@ -1,4 +1,4 @@
-package com.stepstone.training.arena.model.creature;
+package com.stepstone.training.arena.service.model.creature;
 
 public class Human extends Creature {
 

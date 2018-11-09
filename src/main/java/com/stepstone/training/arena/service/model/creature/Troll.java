@@ -1,11 +1,11 @@
-package com.stepstone.training.arena.model.creature;
+package com.stepstone.training.arena.service.model.creature;
 
-public class Elf extends Creature {
+public class Troll extends Creature {
 
     public static class CreatureBuilder extends Creature.CreatureBuilder{
         @Override
         public Creature build() {
-            super.setType(CreatureType.ELF);
+            super.setType(CreatureType.TROLL);
             return super.build();
         }
     }

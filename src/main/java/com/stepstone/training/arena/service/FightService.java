@@ -2,9 +2,9 @@ package com.stepstone.training.arena.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.stepstone.training.arena.model.AttackResult;
-import com.stepstone.training.arena.model.creature.Creature;
-import com.stepstone.training.arena.model.Fighters;
+import com.stepstone.training.arena.service.model.AttackResult;
+import com.stepstone.training.arena.service.model.creature.Creature;
+import com.stepstone.training.arena.service.model.Fighters;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

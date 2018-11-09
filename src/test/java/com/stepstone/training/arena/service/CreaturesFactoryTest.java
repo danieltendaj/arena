@@ -1,8 +1,8 @@
 package com.stepstone.training.arena.service;
 
-import com.stepstone.training.arena.model.creature.Creature;
-import com.stepstone.training.arena.model.creature.CreatureType;
-import com.stepstone.training.arena.model.ProtectionItem;
+import com.stepstone.training.arena.service.model.creature.Creature;
+import com.stepstone.training.arena.service.model.creature.CreatureType;
+import com.stepstone.training.arena.service.model.ProtectionItem;
 import com.stepstone.training.arena.util.CreaturesRandomizer;
 import org.junit.Test;
 import org.junit.runner.RunWith;

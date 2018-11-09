@@ -1,13 +1,10 @@
-package com.stepstone.training.arena.model.creature;
+package com.stepstone.training.arena.data;
 
-import com.stepstone.training.arena.model.*;
-import com.stepstone.training.arena.util.CreaturesRandomizer;
+import com.stepstone.training.arena.service.model.*;
+import com.stepstone.training.arena.service.model.creature.CreatureType;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
 
 @Entity
 @Data

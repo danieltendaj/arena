@@ -1,8 +1,8 @@
-package com.stepstone.training.arena.data;
+package com.stepstone.training.arena.controller;
 
-import com.stepstone.training.arena.model.ProtectionItem;
-import com.stepstone.training.arena.model.TournamentState;
-import com.stepstone.training.arena.model.creature.CreatureType;
+import com.stepstone.training.arena.service.model.ProtectionItem;
+import com.stepstone.training.arena.service.model.TournamentState;
+import com.stepstone.training.arena.service.model.creature.CreatureType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

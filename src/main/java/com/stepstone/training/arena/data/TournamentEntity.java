@@ -1,10 +1,10 @@
-package com.stepstone.training.arena.model;
+package com.stepstone.training.arena.data;
 
-import com.stepstone.training.arena.model.creature.CreatureEntity;
+import com.stepstone.training.arena.data.CreatureEntity;
+import com.stepstone.training.arena.service.model.TournamentState;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.List;
 
 @Entity

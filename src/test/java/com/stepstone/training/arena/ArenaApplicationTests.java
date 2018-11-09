@@ -1,8 +1,8 @@
 package com.stepstone.training.arena;
 
-import com.stepstone.training.arena.model.*;
-import com.stepstone.training.arena.model.creature.Creature;
-import com.stepstone.training.arena.model.creature.CreatureType;
+import com.stepstone.training.arena.service.model.*;
+import com.stepstone.training.arena.service.model.creature.Creature;
+import com.stepstone.training.arena.service.model.creature.CreatureType;
 import com.stepstone.training.arena.service.CreaturesFactory;
 import com.stepstone.training.arena.util.CreaturesRandomizer;
 import org.junit.Test;

@@ -1,7 +1,7 @@
 package com.stepstone.training.arena.service;
 
-import com.stepstone.training.arena.data.TournamentDto;
-import com.stepstone.training.arena.model.TournamentEntity;
+import com.stepstone.training.arena.controller.TournamentDto;
+import com.stepstone.training.arena.data.TournamentEntity;
 import org.springframework.stereotype.Component;
 
 @Component

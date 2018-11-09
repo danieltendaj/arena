@@ -1,6 +1,6 @@
-package com.stepstone.training.arena.data;
+package com.stepstone.training.arena.controller;
 
-import com.stepstone.training.arena.model.TournamentState;
+import com.stepstone.training.arena.service.model.TournamentState;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

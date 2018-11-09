@@ -1,9 +1,9 @@
-package com.stepstone.training.arena.model.creature;
+package com.stepstone.training.arena.service.model.creature;
 
-import com.stepstone.training.arena.model.AttackResult;
-import com.stepstone.training.arena.model.BodyPart;
-import com.stepstone.training.arena.model.Fightable;
-import com.stepstone.training.arena.model.ProtectionItem;
+import com.stepstone.training.arena.service.model.AttackResult;
+import com.stepstone.training.arena.service.model.BodyPart;
+import com.stepstone.training.arena.service.model.Fightable;
+import com.stepstone.training.arena.service.model.ProtectionItem;
 import com.stepstone.training.arena.util.CreaturesRandomizer;
 import lombok.Data;
 

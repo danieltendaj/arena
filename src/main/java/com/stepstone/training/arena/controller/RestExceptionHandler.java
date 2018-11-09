@@ -1,7 +1,7 @@
 package com.stepstone.training.arena.controller;
 
 import com.stepstone.training.arena.controller.ArenaApiError;
-import com.stepstone.training.arena.model.NoSuchTournamentException;
+import com.stepstone.training.arena.service.model.NoSuchTournamentException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;

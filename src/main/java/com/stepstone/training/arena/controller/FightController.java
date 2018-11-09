@@ -2,12 +2,11 @@ package com.stepstone.training.arena.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.stepstone.training.arena.data.TournamentDto;
-import com.stepstone.training.arena.model.NoSuchTournamentException;
-import com.stepstone.training.arena.model.ProtectionItem;
-import com.stepstone.training.arena.model.TournamentState;
-import com.stepstone.training.arena.model.creature.Creature;
-import com.stepstone.training.arena.model.creature.CreatureType;
+import com.stepstone.training.arena.service.model.NoSuchTournamentException;
+import com.stepstone.training.arena.service.model.ProtectionItem;
+import com.stepstone.training.arena.service.model.TournamentState;
+import com.stepstone.training.arena.service.model.creature.Creature;
+import com.stepstone.training.arena.service.model.creature.CreatureType;
 import com.stepstone.training.arena.service.CreaturesFactory;
 import com.stepstone.training.arena.service.FightService;
 import com.stepstone.training.arena.service.TournamentService;
